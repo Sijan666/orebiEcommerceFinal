@@ -5,28 +5,25 @@ import { FaArrowRight } from "react-icons/fa";
 import Flex from '../Flex';
 import { IoGrid } from "react-icons/io5";
 import { CiGrid2H } from "react-icons/ci";
-
-// import best3 from '../../assets/best3.png'
-// import so3 from '../../assets/so3.png'
-// import so2 from '../../assets/so2.png'
-// import cl1 from '../../assets/cl1.png'
-
 import Product from '../Product';
 import axios from 'axios';
-import Images from '../Images';
 import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, PaginationLink } from '../ui/pagination';
 
 const Shop = () => {
     const containerRef = useRef(null);
-    let [allData, setAllData] = useState([]);
+    const [allData, setAllData] = useState([]);
 
     useEffect(() => {
-        async function alldatas() {
-        let data = await axios.get("https://dummyjson.com/products");
-        setAllData(data.data.products);
+        async function fetchAllDatas() {
+        try {
+            const response = await axios.get("https://dummyjson.com/products");
+            setAllData(response.data.products);
+        } catch (error) {
+            console.error("ডাটা আনতে সমস্যা হয়েছে:", error.message);
         }
-        alldatas();
-    });
+        }
+        fetchAllDatas();
+    },[]);
 
     useEffect(() => {
         if (containerRef.current && allData.length > 0) {
@@ -37,6 +34,8 @@ const Shop = () => {
             });
         }
     },);
+
+    
 
     return (
         <>
@@ -63,7 +62,6 @@ const Shop = () => {
                     <div className="color py-12">
                         <h4 className='text-[#262626] font-bold text-[20px] pb-[30px]'>Shop by Color</h4>
                         <div data-filter="all" className='text-[#767676] text-base border-b border-[#F0F0F0] pb-[22px] my-[30px]  cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
-                            {/* <div className="rounded-[50%] h-4 w-4 bg-red-700"></div> */}
                             <p >All Color</p>
                         </div>
                         <div data-filter=".catOne" className='text-[#767676] text-base border-b border-[#F0F0F0] pb-[22px] my-[30px]  cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
@@ -133,7 +131,6 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    {/* <div className=""> */}
                         <div className="pt-8 pb-20 w-full" ref={containerRef}>
                             <Flex className={'flex-wrap gap-x-4 gap-y-10'}>
                                 {allData.map((item)=>(
@@ -198,7 +195,6 @@ const Shop = () => {
                         </PaginationContent>{" "}
                     </Pagination>
                         </div>
-                    {/* </div> */}
                 </div>
             </Flex>
         </Container>
