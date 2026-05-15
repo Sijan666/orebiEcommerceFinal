@@ -19,7 +19,7 @@ const Shop = () => {
             const response = await axios.get("https://dummyjson.com/products");
             setAllData(response.data.products);
         } catch (error) {
-            console.error("ডাটা আনতে সমস্যা হয়েছে:", error.message);
+            console.error("data not found", error.message);
         }
         }
         fetchAllDatas();
