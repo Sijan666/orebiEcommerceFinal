@@ -12,17 +12,17 @@ import { Pagination, PaginationContent, PaginationEllipsis, PaginationItem, Pagi
 const Shop = () => {
     const containerRef = useRef(null);
     const [allData, setAllData] = useState([]);
-
-    useEffect(() => {
+    
+    useEffect(()=>{
         async function fetchAllDatas() {
-        try {
-            const response = await axios.get("https://dummyjson.com/products");
-            setAllData(response.data.products);
-        } catch (error) {
-            console.error("data not found", error.message);
+            try {
+                const response = await axios.get("https://dummyjson.com/products")
+                setAllData(response.data.products)
+            } catch (error) {
+                console.error("data not found", error.message)
+            }
         }
-        }
-        fetchAllDatas();
+        fetchAllDatas()
     },[]);
 
     useEffect(() => {
@@ -164,36 +164,36 @@ const Shop = () => {
                                 </div>
                                 ))}
                             </Flex>
-                    <Pagination>
-                        {" "}
-                        <PaginationContent>
-                        {" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationLink href="#">1</PaginationLink>{" "}
-                        </PaginationItem>{" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationLink href="#">2</PaginationLink>{" "}
-                        </PaginationItem>{" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationLink href="#">3</PaginationLink>{" "}
-                        </PaginationItem>{" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationLink href="#">4</PaginationLink>{" "}
-                        </PaginationItem>{" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationEllipsis />{" "}
-                        </PaginationItem>{" "}
-                        <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
-                            {" "}
-                            <PaginationLink href="#">10</PaginationLink>{" "}
-                        </PaginationItem>{" "}
-                        </PaginationContent>{" "}
-                    </Pagination>
+                            <Pagination>
+                                {" "}
+                                <PaginationContent>
+                                {" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationLink href="#">1</PaginationLink>{" "}
+                                </PaginationItem>{" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationLink href="#">2</PaginationLink>{" "}
+                                </PaginationItem>{" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationLink href="#">3</PaginationLink>{" "}
+                                </PaginationItem>{" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationLink href="#">4</PaginationLink>{" "}
+                                </PaginationItem>{" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationEllipsis />{" "}
+                                </PaginationItem>{" "}
+                                <PaginationItem className="font-sans font-normal text-sm text-[#767676] duration-100">
+                                    {" "}
+                                    <PaginationLink href="#">10</PaginationLink>{" "}
+                                </PaginationItem>{" "}
+                                </PaginationContent>{" "}
+                            </Pagination>
                         </div>
                 </div>
             </Flex>
