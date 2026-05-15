@@ -17,7 +17,7 @@ const Shop = () => {
         async function fetchAllDatas() {
             try {
                 const response = await axios.get("https://dummyjson.com/products")
-                setAllData(response.data.products)
+                setAllData(response.data.product)
             } catch (error) {
                 console.error("data not found", error.message)
             }
@@ -134,7 +134,7 @@ const Shop = () => {
                         <div className="pt-8 pb-20 w-full" ref={containerRef}>
                             <Flex className={'flex-wrap gap-x-4 gap-y-10'}>
                                 {allData.map((item)=>(
-                                <div className="mix all w-[32%]">
+                                <div key={item.id} className="mix all w-[32%]">
                                     <Product
                                     productImg={item.thumbnail}
                                     badgeText={item.stock}
@@ -144,7 +144,7 @@ const Shop = () => {
                                 </div>
                                 ))} 
                                 {allData.slice(10,15).map((item)=>(
-                                <div className="mix catOne w-[32%]">
+                                <div key={item.id} className="mix catOne w-[32%]">
                                     <Product
                                     productImg={item.thumbnail}
                                     badgeText={item.stock}
@@ -154,7 +154,7 @@ const Shop = () => {
                                 </div>
                                 ))}
                                 {allData.slice(16,22).map((item)=>(
-                                <div className="mix catTwo w-[32%]">
+                                <div key={item.id} className="mix catTwo w-[32%]">
                                     <Product
                                     productImg={item.thumbnail}
                                     badgeText={item.stock}
