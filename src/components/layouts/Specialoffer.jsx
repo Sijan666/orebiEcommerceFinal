@@ -10,22 +10,22 @@ import Product from '../Product'
 const Specialoffer = () => {
     return (
         <div className="pt-8 pb-20">
-            <Container>
+            <Container className={'px-3 lg:px-0'}>
                 <h3 className="text-[39px] text-[#262626] font-bold block pb-[30px]">Special Offers</h3>
-                <Flex className={'justify-between items-center gap-x-4'}>
-                    <div className="w-1/3" id='productOne'>
+                <div className='grid lg:grid-cols-4 grid-cols-1'>
+                    <div className="" id='productOne'>
                         <Product productImg={so1} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                     </div>
-                    <div className="w-1/3" id='productOne'>
+                    <div className="" id='productOne'>
                         <Product productImg={so2} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                     </div>
-                    <div className="w-1/3" id='productOne'>
+                    <div className="" id='productOne'>
                         <Product productImg={so3} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                     </div>
-                    <div className="w-1/3" id='productOne'>
+                    <div className="" id='productOne'>
                         <Product productImg={so4} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                     </div>
-                </Flex>
+                </div>
             </Container>
         </div>
     )
