@@ -17,7 +17,7 @@ const Shop = () => {
         async function fetchAllDatas() {
             try {
                 const response = await axios.get("https://dummyjson.com/products")
-                setAllData(response.data.product)
+                setAllData(response.data.products)
             } catch (error) {
                 console.error("data not found", error.message)
             }
