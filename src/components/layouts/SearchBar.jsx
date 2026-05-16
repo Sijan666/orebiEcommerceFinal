@@ -20,7 +20,7 @@ const SearchBar = () => {
         <>
         <div className="bg-[#F5F5F3] border border-[#979797] border-r-0 border-l-0">
             <Container className={'lg:py-6 py-2'}>
-                <Flex className={'lg:justify-between justify-between items-center mx-4 lg:mx-0'}>
+                <div className='flex flex-col lg:flex-row lg:justify-between gap-y-5 items-start lg:items-center mx-4 lg:mx-0'>
                     <div className="iconText flex items-center relative cursor-pointer">
                         <div className='pr-3 text-[14px] text-[#262626] flex gap-x-2 items-center' onClick={()=>setShow(!show)}>
                             <HugeiconsIcon icon={MenuTwoLineIcon} color='text-[#262626]' strokeWidth={3}/>
@@ -104,7 +104,7 @@ const SearchBar = () => {
                             </Link>
                         </ul>
                     </div>
-                </Flex>
+                </div>
             </Container>
         </div>
         </>
