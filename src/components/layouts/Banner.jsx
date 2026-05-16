@@ -31,7 +31,7 @@ const Banner = () => {
         autoSpeed : 1500,
     };
     return (
-        <>
+        <div className="py-2">
             <Slider {...settings}>
                 <div className="">
                     <Link to={'/productinside'}>
@@ -49,7 +49,7 @@ const Banner = () => {
                     </Link>
                 </div>
             </Slider>
-        </>
+        </div>
     )
 }
 
