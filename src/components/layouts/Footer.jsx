@@ -12,8 +12,8 @@ const Footer = () => {
   return (
     <>
       <div className="bg-[#F5F5F3] py-[50px]">
-        <Container>
-          <Flex className={'justify-between items-start pb-[60px]'}>
+        <Container className={'px-3 lg:px-0'}>
+          <div className='flex-col lg:flex-row justify-between items-start pb-[60px] gap-y-5'>
             <div className="menu">
               <p className="text-[#262626] text-base font-bold pb-[25px] uppercase">Menu</p>
               <ul className="leading-[23px]">
@@ -73,7 +73,7 @@ const Footer = () => {
               <Images imgSrc={Logo}/>
               </Link>
             </div>
-          </Flex>
+          </div>
           <Flex className={'justify-between'}>
             <div className="footerIcons">
               <ul className="flex justify-between gap-x-6 items-center">
