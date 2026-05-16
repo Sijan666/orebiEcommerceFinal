@@ -11,7 +11,7 @@ const Header = () => {
     return (
         <>
         <Container className={'py-8'}>
-            <Flex>
+            <div className="flex flex-col lg:flex-row gap-y-5 items-center">
                 <div className="logo lg:w-[40%]">
                     <Link to={'/'}>
                     <Images imgSrc={Logo}/>
@@ -41,7 +41,7 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-            </Flex>
+            </div>
         </Container>
         </>
     )
