@@ -13,7 +13,7 @@ const Footer = () => {
     <>
       <div className="bg-[#F5F5F3] py-[50px]">
         <Container className={'px-3 lg:px-0'}>
-          <div className='flex-col lg:flex-row justify-between items-start pb-[60px] gap-y-5'>
+          <div className='flex-col flex lg:flex-row justify-between items-start pb-[60px] gap-y-5'>
             <div className="menu">
               <p className="text-[#262626] text-base font-bold pb-[25px] uppercase">Menu</p>
               <ul className="leading-[23px]">
