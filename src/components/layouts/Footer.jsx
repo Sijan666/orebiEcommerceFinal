@@ -74,7 +74,7 @@ const Footer = () => {
               </Link>
             </div>
           </div>
-          <Flex className={'justify-between'}>
+          <Flex className={'lg:justify-between lg:flex-row flex-col gap-5 justify-center'}>
             <div className="footerIcons">
               <ul className="flex justify-between gap-x-6 items-center">
                 <li>
@@ -94,7 +94,7 @@ const Footer = () => {
                 </li>
               </ul>
             </div>
-            <p className="text-[14px] text-[#6D6D6D]">2020 Orebi Minimal eCommerce Figma Template by Adveits</p>
+            <p className="text-[14px] text-[#6D6D6D] text-center lg:text-left">2020 Orebi Minimal eCommerce Figma Template by Adveits</p>
           </Flex>
         </Container>
       </div>
