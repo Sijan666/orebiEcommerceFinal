@@ -35,11 +35,9 @@ const Shop = () => {
         }
     },);
 
-    
-
     return (
         <>
-        <Container className={'py-[125px]'}>
+        <Container className={'py-[125px] px-3 lg:px-0'}>
             <h3 className="text-[39px] text-[#262626] font-bold block pb-5">Shop</h3>
             <Flex className={'text-[12px] text-[#767676] gap-x-2'}>
                 <p>Home</p>
@@ -47,7 +45,7 @@ const Shop = () => {
                 <p>Shop</p>
             </Flex>
         </Container>
-        <Container>
+        <Container className={'px-3 lg:px-0'}>
             <Flex className={'justify-between items-start gap-x-4'}>
                 <div className="sideBar w-[30%] pb-[30px]">
                     <div className="category">
