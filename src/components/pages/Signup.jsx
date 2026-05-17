@@ -2,7 +2,6 @@ import React from 'react'
 import Container from '../Container'
 import Flex from '../Flex'
 import { FaArrowRight } from 'react-icons/fa'
-import Button from '../Button'
 
 const Signup = () => {
     return (
