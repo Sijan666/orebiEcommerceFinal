@@ -33,7 +33,7 @@ const NewArrivals = () => {
                     <h3 className="text-[39px] text-[#262626] font-bold block pb-[30px]">New Arrivals</h3>
                     <div className="lg:-mx-2 "> 
                         {/* <Slider {...settings}> */}
-                        <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2">
+                        <div className="grid lg:grid-cols-4 grid-cols-2 gap-3">
                             <div className="">
                                 <Product productImg={n1} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>

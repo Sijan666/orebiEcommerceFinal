@@ -28,9 +28,9 @@ const Bestseller = () => {
         <div className="pt-8 pb-20">
             <Container>
                 <h3 className="text-[39px] text-[#262626] font-bold block pb-[30px]">Our Bestsellers</h3>
-                    <Flex>
+                    <div className='grid lg:grid-cols-4 grid-cols-2 gap-3'>
                         {allData.slice(0,4).map((item)=>(
-                        <div key={item.id} className="w-1/4">
+                        <div key={item.id}>
                             <Product
                             productImg={item.thumbnail}
                             badgeText={item.stock}
@@ -39,7 +39,7 @@ const Bestseller = () => {
                             />
                         </div>
                         ))} 
-                    </Flex>
+                    </div>
             </Container>
         </div>
     );
