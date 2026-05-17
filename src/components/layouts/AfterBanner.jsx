@@ -6,11 +6,11 @@ import Container from "../Container";
 const AfterBanner = () => {
     return (
     <>
-        <div className="py-[22px] border-b border-b-[#F0F0F0] border-t border-t-[#F0F0F0] -mt-2">
+        <div className="py-[22px] border-b border-b-[#F0F0F0] border-t border-t-[#F0F0F0]">
             <Container className={'px-3 lg:px-0'}>
-                <div className="justify-between flex flex-col lg:flex-row gap-y-5 items-start">
+                <div className="justify-between flex flex-col lg:flex-row gap-y-5 items-start lg:items-center">
                     <div className="">
-                        <div className="flex-row flex">
+                        <div className="flex-row flex items-center">
                             <h4 className="lg:text-[26px] font-dmFont font-black text-black text-[15px]">
                             2
                             </h4>
@@ -20,7 +20,7 @@ const AfterBanner = () => {
                         </div>
                     </div>
                     <div className="">
-                        <div className="flex-row flex">
+                        <div className="flex-row flex items-center">
                             <h4 className="lg:text-[26px] font-dmFont font-black text-black text-[15px]">
                             <FaTruck />
                             </h4>
@@ -30,7 +30,7 @@ const AfterBanner = () => {
                         </div>
                     </div>
                     <div className="">
-                        <div className="flex-row flex">
+                        <div className="flex-row flex items-center">
                             <h4 className="lg:text-[26px] font-dmFont font-black text-black text-[15px]">
                             <FaUndoAlt />
                             </h4>

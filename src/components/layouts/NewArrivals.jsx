@@ -17,41 +17,43 @@ import PrevArrow from '../PrevArrow'
 
 
 const NewArrivals = () => {
-    var settings = {
-        dots: false,
-        infinite: true,
-        speed: 500,
-        slidesToShow: 4,
-        slidesToScroll: 1,
-        nextArrow: <NextArrow />,
-        prevArrow: <PrevArrow />
-    };
+    // var settings = {
+    //     dots: false,
+    //     infinite: true,
+    //     speed: 500,
+    //     slidesToShow: 4,
+    //     slidesToScroll: 1,
+    //     nextArrow: <NextArrow />,
+    //     prevArrow: <PrevArrow />
+    // };
     return (
         <>
             <div className="lg:pt-8 lg:pb-20">
                 <Container>
                     <h3 className="text-[39px] text-[#262626] font-bold block pb-[30px]">New Arrivals</h3>
                     <div className="lg:-mx-2 "> 
-                        <Slider {...settings}>
-                            <div className="lg:w-1/4 w-1/2">
+                        {/* <Slider {...settings}> */}
+                        <div className="grid lg:grid-cols-4 grid-cols-1 md:grid-cols-2">
+                            <div className="">
                                 <Product productImg={n1} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>
-                            <div className="lg:w-1/4 w-1/2">
+                            <div className="">
                                 <Product productImg={n2} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>
-                            <div className="lg:w-1/4 w-1/2">
+                            <div className="">
                                 <Product productImg={n3} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>
-                            <div className="lg:w-1/4 w-1/2">
+                            <div className="">
                                 <Product productImg={n4} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>
-                            <div className="lg:w-1/4 w-1/2">
+                            {/* <div className="">
                                 <Product productImg={n1} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
                             </div>
-                            <div className="lg:w-1/4 w-1/2">
+                            <div className="">
                                 <Product productImg={n2} badgeText={'New'} productTitle={'Basic Crew Neck Tee'} productPrice={'$44.00'}/>
-                            </div>
-                        </Slider>
+                            </div> */}
+                        </div>
+                        {/* </Slider> */}
                     </div>
                 </Container>
             </div>
