@@ -1,13 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import mixitup from 'mixitup'; 
-import Container from '../Container'
-import { FaArrowRight } from "react-icons/fa";
+import Container from '../Container';
+import { FaArrowRight, FaArrowLeft } from "react-icons/fa";
 import Flex from '../Flex';
 import { IoGrid } from "react-icons/io5";
 import { CiGrid2H } from "react-icons/ci";
 import Product from '../Product';
 import axios from 'axios';
-import { Pagination, PaginationContent, PaginationItem, PaginationLink } from '../ui/pagination';
 
 const Shop = () => {
     const containerRef = useRef(null);
@@ -29,7 +28,7 @@ const Shop = () => {
         fetchAllDatas();
     }, []);
 
-    // Pagination
+    // Pagination 
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = allData.slice(indexOfFirstItem, indexOfLastItem);
@@ -38,6 +37,25 @@ const Shop = () => {
     const handlePageChange = (pageNumber) => {
         setCurrentPage(pageNumber);
         window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
+    // Pagination 
+    const getPaginationNumbers = () => {
+        const pages = [];
+        if (totalPages <= 6) {
+            for (let i = 1; i <= totalPages; i++) {
+                pages.push(i);
+            }
+        } else {
+            if (currentPage <= 3) {
+                pages.push(1, 2, 3, 4, '...', totalPages);
+            } else if (currentPage >= totalPages - 2) {
+                pages.push(1, '...', totalPages - 3, totalPages - 2, totalPages - 1, totalPages);
+            } else {
+                pages.push(1, '...', currentPage - 1, currentPage, currentPage + 1, '...', totalPages);
+            }
+        }
+        return pages;
     };
 
     useEffect(() => {
@@ -129,7 +147,6 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-
                     <div className="pt-4 lg:pt-8 pb-20 w-full" ref={containerRef}>
                         <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-10'>
                             {currentItems.map((item, index) => {
@@ -146,43 +163,60 @@ const Shop = () => {
                                 );
                             })}
                         </div>
-                        {/* pagination */}
+                        {/* Pagination */}
                         {totalPages > 1 && (
-                            <div className="flex justify-center mt-10 overflow-x-auto">
-                                <Pagination>
-                                    <PaginationContent className="flex-wrap justify-center gap-y-2">
-                                        {/* Prev Button */}
-                                        <PaginationItem className="cursor-pointer">
-                                            <PaginationLink 
-                                                onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
-                                                className={`text-[#767676] ${currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
-                                            >
-                                                Prev
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                        {/* Page Numbers */}
-                                        {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                                            <PaginationItem key={page} className="cursor-pointer font-sans font-normal text-sm duration-100">
-                                                <PaginationLink 
+                            <div className="flex justify-center mt-[60px] lg:mt-[100px] w-full">
+                                <div className="flex items-center gap-x-1 sm:gap-x-2 bg-[#121212]/80 backdrop-blur-xl border border-white/10 p-2 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.3)]">
+                                    {/* Prev Button */}
+                                    <button
+                                        onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
+                                        disabled={currentPage === 1}
+                                        className={`group flex items-center gap-x-2 px-4 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${
+                                            currentPage === 1 
+                                                ? 'text-[#444] cursor-not-allowed' 
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5 active:scale-95'
+                                        }`}
+                                    >
+                                        <FaArrowLeft className={`text-xs transition-transform duration-300 ${currentPage !== 1 && 'group-hover:-translate-x-1'}`} /> 
+                                        <span className="hidden sm:block">Prev</span>
+                                    </button>
+                                    {/* Page Numbers */}
+                                    <div className="flex items-center gap-x-1 px-2 sm:px-4 border-x border-white/10">
+                                        {getPaginationNumbers().map((page, index) => (
+                                            page === '...' ? (
+                                                <span key={`ellipsis-${index}`} className="px-2 text-gray-500 font-bold tracking-widest select-none">
+                                                    ...
+                                                </span>
+                                            ) : (
+                                                <button
+                                                    key={page}
                                                     onClick={() => handlePageChange(page)}
-                                                    isActive={currentPage === page}
-                                                    className={currentPage === page ? "bg-black text-white" : "text-[#767676] hover:bg-gray-100"}
+                                                    className={`relative flex h-10 w-10 items-center justify-center rounded-full text-sm font-bold transition-all duration-500 overflow-hidden ${
+                                                        currentPage === page 
+                                                            ? 'bg-linear-to-br from-gray-100 to-gray-400 text-black scale-110 shadow-[0_0_20px_rgba(255,255,255,0.2)]' 
+                                                            : 'text-gray-400 bg-transparent hover:text-white hover:bg-white/10 active:scale-95'
+                                                    }`}
                                                 >
                                                     {page}
-                                                </PaginationLink>
-                                            </PaginationItem>
+                                                </button>
+                                            )
                                         ))}
-                                        {/* Next Button */}
-                                        <PaginationItem className="cursor-pointer">
-                                            <PaginationLink 
-                                                onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
-                                                className={`text-[#767676] ${currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:bg-gray-100'}`}
-                                            >
-                                                Next
-                                            </PaginationLink>
-                                        </PaginationItem>
-                                    </PaginationContent>
-                                </Pagination>
+                                    </div>
+                                    {/* Next Button */}
+                                    <button
+                                        onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
+                                        disabled={currentPage === totalPages}
+                                        className={`group flex items-center gap-x-2 px-4 py-2.5 rounded-full text-sm font-medium tracking-wide transition-all duration-300 ${
+                                            currentPage === totalPages 
+                                                ? 'text-[#444] cursor-not-allowed' 
+                                                : 'text-gray-400 hover:text-white hover:bg-white/5 active:scale-95'
+                                        }`}
+                                    >
+                                        <span className="hidden sm:block">Next</span> 
+                                        <FaArrowRight className={`text-xs transition-transform duration-300 ${currentPage !== totalPages && 'group-hover:translate-x-1'}`} />
+                                    </button>
+                                    
+                                </div>
                             </div>
                         )}
                     </div>
@@ -193,4 +227,4 @@ const Shop = () => {
     )
 }
 
-export default Shop
+export default Shop;
