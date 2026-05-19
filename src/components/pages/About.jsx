@@ -9,7 +9,8 @@ import Button from "../Button";
 const About = () => {
   return (
     <>
-      <Container className={'py-[125px]'}>
+    <section className="py-2" id="about">
+      <Container className={'py-[125px] px-3 lg:px-0'}>
           <h3 className="text-[39px] text-[#262626] font-bold block pb-5">About</h3>
           <Flex className={'text-[12px] text-[#767676] gap-x-2'}>
               <p>Home</p>
@@ -17,7 +18,7 @@ const About = () => {
               <p>About</p>
           </Flex>
       </Container>
-      <Container className={'pt-[60px] pb-[100px]'}>
+      <Container className={'pt-[60px] pb-[100px] px-3 lg:px-0'}>
         <Flex className={'justify-between gap-x-10'}>
           <div className="leftSide relative">
             <Images imgSrc={about1}/>
@@ -29,10 +30,10 @@ const About = () => {
           </div>
         </Flex>
       </Container>
-      <Container>
+      <Container className={'px-3 lg:px-0'}>
         <h4 className="text-[39px]">Orebi is one of the world’s leading ecommerce brands and is internationally recognized for celebrating the essence of classic Worldwide cool looking style.</h4>
       </Container>
-      <Container className={'py-[120px]'}>
+      <Container className={'py-[120px] px-3 lg:px-0'}>
         <Flex className={'justify-between gap-x-5'}>
           <div className="">
             <h4 className="pb-[25px] text-[25px] text-[#262626] font-bold">Our Vision</h4>
@@ -48,6 +49,7 @@ const About = () => {
           </div>
         </Flex>
       </Container>
+    </section>
     </>
   )
 }
