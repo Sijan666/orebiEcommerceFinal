@@ -18,7 +18,6 @@ const About = () => {
               <p>About</p>
           </Flex>
       </Container>
-      
       <Container className={'pt-[30px] md:pt-[60px] pb-[50px] md:pb-[100px] px-4 lg:px-0'}>
         <Flex className={'flex-col md:flex-row justify-between gap-y-8 md:gap-y-0 md:gap-x-10'}>
           <div className="leftSide relative w-full">
@@ -31,11 +30,9 @@ const About = () => {
           </div>
         </Flex>
       </Container>
-
       <Container className={'px-4 lg:px-0'}>
         <h4 className="text-[22px] md:text-[39px] leading-[34px] md:leading-[52px]">Orebi is one of the world’s leading ecommerce brands and is internationally recognized for celebrating the essence of classic Worldwide cool looking style.</h4>
       </Container>
-
       <Container className={'py-[60px] md:py-[120px] px-4 lg:px-0'}>
         <Flex className={'flex-col lg:flex-row justify-between gap-y-10 lg:gap-y-0 lg:gap-x-5'}>
           <div className="w-full lg:w-1/3">
