@@ -22,7 +22,7 @@ const ProductInside = () => {
     return (
         <>
         <section id="productInside">
-            <Container className={'py-[125px]'}>
+            <Container className={'py-[125px] px-3 lg:px-0'}>
                 <h3 className="text-[39px] text-[#262626] font-bold block pb-5">Products</h3>
                 <Flex className={'text-[12px] text-[#767676] gap-x-2'}>
                     <p>Home</p>
@@ -31,7 +31,7 @@ const ProductInside = () => {
                 </Flex>
             </Container>
             <div className="py-[60px]">
-                <Container>
+                <Container className={'px-3 lg:px-0'}>
                     <div className="pb-[50px]">
                         <Flex className={'justify-between gap-x-5'}>
                             <div className="w-1/2">
@@ -117,7 +117,7 @@ const ProductInside = () => {
                     </div>
                 </Container>
                 <div className="py-20">
-                    <Container>
+                    <Container className={'px-3 lg:px-0'}>
                         <Flex className={'gap-x-15 pb-[50px]'}>
                             <h4 className="text-[#767676] text-[20px] hover:font-bold hover:text-[#262626] duration-300 cursor-pointer">Description</h4>
                             <h4 className="text-[#767676] text-[20px] hover:font-bold hover:text-[#262626] duration-300 cursor-pointer">Reviews (1)</h4>
@@ -138,7 +138,7 @@ const ProductInside = () => {
                     </Container>
                 </div>
                 <div className="py-12">
-                    <Container>
+                    <Container className={'px-3 lg:px-0'}>
                         <h4 className="pb-10 text-[#262626] font-bold text-[20px]">Add a Review</h4>
                         <h5 className="text-[262626] font-bold text-base pb-2.5">Name</h5>
                         <input type="text" placeholder="Your name here" className="border-b border-[#F0F0F0] mb-6 outline-none w-[600px] pb-4"/>
