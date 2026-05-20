@@ -29,7 +29,6 @@ const ProductInside = () => {
                     <p>Products</p>
                 </Flex>
             </Container>
-            
             <div className="py-[30px] md:py-[60px]">
                 <Container className={'px-4 lg:px-0'}>
                     <div className="pb-[30px] md:pb-[50px]">
@@ -50,16 +49,13 @@ const ProductInside = () => {
                             </div>
                         </Flex>
                     </div>
-                    
                     <div className="w-full lg:w-[780px]">
                         <h4 className="text-[#262626] font-bold text-[28px] md:text-[40px] pb-2.5 md:pb-[15px]">Product</h4>
                         <Images imgSrc={Reviews} className={'pb-4 md:pb-5'}/>
-                        
                         <div className="flex gap-x-5 items-center pb-5 md:pb-[26px] border-b border-[#F0F0F0] mb-5 md:mb-[30px]">
                             <p className="line-through text-[#767676] text-sm md:text-base">$88.00</p>
                             <p className="font-bold text-[18px] md:text-[20px] text-[#262626]">$44.00</p>
                         </div>
-                        
                         <div className="pb-5 md:pb-[30px] border-b border-[#F0F0F0]">
                             <div className="flex gap-x-6 md:gap-x-10 items-center pb-4 md:pb-5">
                                 <p className="text-[#262626] font-bold text-sm md:text-base">COLOR:</p>
@@ -71,7 +67,6 @@ const ProductInside = () => {
                                     <div className="rounded-[50%] h-4 w-4 bg-[#15CBA5]/30 hover:bg-[#15CBA5] hover:scale-125 duration-300 cursor-pointer"></div>
                                 </div>
                             </div>
-                            
                             <div className="flex gap-x-8 md:gap-x-10 items-center pb-4 md:pb-5">
                                 <p className="text-[#262626] font-bold text-sm md:text-base">SIZE:</p>
                                 <div className="flex gap-x-4">
@@ -82,7 +77,6 @@ const ProductInside = () => {
                                     </select>
                                 </div>
                             </div>
-                            
                             <div className="flex gap-x-4 md:gap-x-10 items-center">
                                 <p className="text-[#262626] font-bold text-sm md:text-base">QUANTITY:</p>
                                 <div className="flex gap-x-4 py-1 px-4 md:px-5 border border-[#F0F0F0] items-center">
@@ -92,33 +86,28 @@ const ProductInside = () => {
                                 </div>
                             </div>
                         </div>
-                        
                         <div className="pb-4 md:pb-5 border-b border-[#F0F0F0]">
                             <div className="flex gap-x-10 items-center pt-4 md:pt-5">
                                 <p className="text-[#262626] font-bold text-sm md:text-base">Status:</p>
                                 <p className="text-[#767676] text-sm md:text-base">In stock</p>
                             </div>
                         </div>
-                        
                         <div className="pb-5 md:pb-[30px] border-b border-[#F0F0F0]">
                             <div className="flex flex-col sm:flex-row gap-y-4 sm:gap-y-0 sm:gap-x-6 md:gap-x-10 items-start sm:items-center pt-5 md:pt-[30px]">
                                 <button className="w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 border border-[#262626] hover:bg-[#262626] text-black hover:text-white duration-300 cursor-pointer font-bold text-sm md:text-base">Add to Wish list</button>
                                 <button className="w-full sm:w-auto px-6 md:px-10 py-3 md:py-4 border border-[#262626] hover:bg-[#262626] text-black hover:text-white duration-300 cursor-pointer font-bold text-sm md:text-base">Add to Cart</button>
                             </div>
                         </div>
-                        
                         <div className="pb-4 md:pb-6 border-b border-[#F0F0F0]">
                             <div className="pt-4 md:pt-6">
                                 <p className="text-[#262626] text-sm md:text-base font-bold">FEATURES & DETAILS</p>
                             </div>
                         </div>
-                        
                         <div className="pb-4 md:pb-6 border-b border-[#F0F0F0]">
                             <div className="pt-4 md:pt-6">
                                 <p className="text-[#262626] text-sm md:text-base font-bold">SHIPPING & RETURNS</p>
                             </div>
                         </div>
-                        
                         <div>
                             <div className="pt-4 md:pt-6">
                                 <p className="text-[#767676] text-sm md:text-base leading-relaxed">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
@@ -126,18 +115,15 @@ const ProductInside = () => {
                         </div>
                     </div>
                 </Container>
-                
                 <div className="py-12 md:py-20">
                     <Container className={'px-4 lg:px-0'}>
                         <Flex className={'gap-x-8 md:gap-x-15 pb-[30px] md:pb-[50px]'}>
                             <h4 className="text-[#767676] text-[18px] md:text-[20px] hover:font-bold hover:text-[#262626] duration-300 cursor-pointer">Description</h4>
                             <h4 className="text-[#767676] text-[18px] md:text-[20px] hover:font-bold hover:text-[#262626] duration-300 cursor-pointer">Reviews (1)</h4>
                         </Flex>
-                        
                         <div className="pb-4 border-b border-[#F0F0F0]">
                             <p className="text-[#767676] text-[13px] md:text-[14px]">1 review for Product</p>
                         </div>
-                        
                         <div className="pb-4 pt-5 md:pt-[30px] border-b border-[#F0F0F0]">
                             <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center pb-3 md:pb-4 gap-y-2 sm:gap-y-0">
                                 <div className="flex gap-x-5 md:gap-x-10 items-center">
@@ -150,20 +136,15 @@ const ProductInside = () => {
                         </div>
                     </Container>
                 </div>
-                
                 <div className="py-8 md:py-12">
                     <Container className={'px-4 lg:px-0'}>
                         <h4 className="pb-6 md:pb-10 text-[#262626] font-bold text-[18px] md:text-[20px]">Add a Review</h4>
-                        
                         <h5 className="text-[#262626] font-bold text-sm md:text-base pb-2 md:pb-2.5">Name</h5>
                         <input type="text" placeholder="Your name here" className="border-b border-[#F0F0F0] mb-5 md:mb-6 outline-none w-full md:w-[600px] pb-3 md:pb-4 text-sm md:text-base"/>
-                        
                         <h5 className="text-[#262626] font-bold text-sm md:text-base pb-2 md:pb-2.5">Email</h5>
                         <input type="email" placeholder="Your email here" className="border-b border-[#F0F0F0] mb-5 md:mb-6 outline-none w-full md:w-[600px] pb-3 md:pb-4 text-sm md:text-base"/>
-                        
                         <h5 className="text-[#262626] font-bold text-sm md:text-base pb-2 md:pb-2.5">Review</h5>
                         <textarea name="" placeholder="Your review here" className="border-b border-[#F0F0F0] outline-none w-full md:w-[600px] pb-3 md:pb-4 block text-sm md:text-base resize-none" rows={'5'} cols={'5'}></textarea>
-                        
                         <button className="w-full sm:w-auto px-10 md:px-20 py-3 md:py-4 font-bold text-black hover:text-white text-sm md:text-base hover:bg-[#262626] duration-300 mt-5 md:mt-[30px] border border-[#262626] cursor-pointer">Post</button>
                     </Container>
                 </div>
