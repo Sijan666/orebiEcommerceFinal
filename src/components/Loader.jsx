@@ -1,85 +1,57 @@
 import React from 'react';
 
-const Loader = () => {
+const StudioLoader = () => {
   return (
-    <div className="w-full min-h-screen bg-white flex flex-col pointer-events-none">
-      {/* Top Navigation Bar Skeleton */}
-      <div className="w-full h-20 border-b border-gray-100 flex items-center justify-between px-10">
-        {/* Logo Placeholder */}
-        <div className="w-24 h-6 bg-gray-200 rounded animate-pulse"></div>
+    <div className="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-white selection:bg-transparent overflow-hidden">
+      {/* High-End Custom CSS Keyframes
+        Using advanced cubic-bezier for that "expensive" buttery smooth feeling
+      */}
+      <style>{`
+        @keyframes text-reveal {
+          0% { clip-path: polygon(0 100%, 100% 100%, 100% 100%, 0% 100%); transform: translateY(20px); }
+          20%, 80% { clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%); transform: translateY(0); }
+          100% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); transform: translateY(-20px); }
+        }
+        @keyframes line-sweep {
+          0% { width: 0%; left: 50%; transform: translateX(-50%); opacity: 0;}
+          20% { width: 150px; opacity: 1; }
+          80% { width: 150px; opacity: 1; left: 50%; transform: translateX(-50%); }
+          100% { width: 0%; left: 100%; transform: translateX(0); opacity: 0; }
+        }
+        @keyframes fade-in-out {
+          0%, 100% { opacity: 0; }
+          20%, 80% { opacity: 1; }
+        }
+        .animate-brand-text {
+          animation: text-reveal 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+        .animate-sweep-line {
+          position: relative;
+          animation: line-sweep 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+        .animate-subtext {
+          animation: fade-in-out 2.5s cubic-bezier(0.77, 0, 0.175, 1) infinite;
+        }
+      `}</style>
+
+      <div className="relative flex flex-col items-center justify-center h-40">
         
-        {/* Menu Links Placeholder */}
-        <div className="hidden md:flex space-x-8">
-          <div className="w-12 h-4 bg-gray-200 rounded animate-pulse"></div>
-          <div className="w-12 h-4 bg-gray-200 rounded animate-pulse"></div>
-          <div className="w-12 h-4 bg-gray-200 rounded animate-pulse"></div>
-          <div className="w-16 h-4 bg-gray-200 rounded animate-pulse"></div>
-        </div>
+        {/* Main Brand Typography Reveal */}
+        <h1 className="text-[#262626] text-5xl md:text-6xl font-bold tracking-[0.25em] uppercase animate-brand-text">
+          Orebi
+        </h1>
+
+        {/* Premium Minimalist Animated Line */}
+        <div className="absolute bottom-6 h-[2px] bg-[#262626] animate-sweep-line"></div>
         
-        {/* Empty space for balance */}
-        <div className="w-24"></div>
-      </div>
-
-      {/* Secondary Bar (Search & Categories) Skeleton */}
-      <div className="w-full h-24 border-b border-gray-100 flex items-center justify-between px-10 bg-[#F5F5F3]">
-        {/* Shop by Category Placeholder */}
-        <div className="flex items-center space-x-3">
-          <div className="w-4 h-4 bg-gray-300 rounded animate-pulse"></div>
-          <div className="w-32 h-4 bg-gray-300 rounded animate-pulse"></div>
+        {/* Subtle Tracking Status */}
+        <div className="absolute bottom-0 text-[10px] uppercase tracking-[0.5em] text-gray-400 font-semibold animate-subtext">
+          Exclusive Collection
         </div>
 
-        {/* Search Bar Placeholder */}
-        <div className="w-1/3 h-12 bg-white rounded-md animate-pulse"></div>
-
-        {/* Account & Cart Icons Placeholder */}
-        <div className="flex items-center space-x-4">
-          <div className="w-5 h-5 bg-gray-300 rounded-full animate-pulse"></div>
-          <div className="w-5 h-5 bg-gray-300 rounded-full animate-pulse"></div>
-        </div>
-      </div>
-
-      {/* Hero Section Skeleton */}
-      <div className="flex-1 w-full max-w-7xl mx-auto flex flex-col md:flex-row items-center justify-between px-10 py-16">
-        {/* Left Side: Text Content */}
-        <div className="w-full md:w-1/2 space-y-6">
-          <div className="w-3/4 h-12 bg-gray-200 rounded animate-pulse"></div>
-          <div className="w-2/3 h-12 bg-gray-200 rounded animate-pulse"></div>
-          <div className="w-1/2 h-6 bg-gray-200 rounded animate-pulse mt-4"></div>
-          <div className="w-1/3 h-4 bg-gray-200 rounded animate-pulse"></div>
-          
-          {/* Button Placeholder */}
-          <div className="w-40 h-12 bg-gray-800 rounded animate-pulse mt-8"></div>
-        </div>
-
-        {/* Right Side: Image/Composition Placeholder */}
-        <div className="w-full md:w-1/2 h-[400px] flex items-center justify-center relative mt-10 md:mt-0">
-          <div className="absolute w-3/4 h-full bg-gray-100 rounded-lg animate-pulse transform rotate-3"></div>
-          <div className="absolute w-1/2 h-3/4 bg-gray-200 rounded-lg animate-pulse transform -rotate-2"></div>
-        </div>
-      </div>
-
-      {/* Bottom Features Banner Skeleton */}
-      <div className="w-full border-t border-gray-100 py-8 px-10">
-        <div className="max-w-7xl mx-auto flex flex-wrap justify-between items-center gap-4">
-          {/* Feature 1 */}
-          <div className="flex items-center space-x-3">
-            <div className="w-6 h-6 bg-gray-200 rounded-full animate-pulse"></div>
-            <div className="w-32 h-4 bg-gray-200 rounded animate-pulse"></div>
-          </div>
-          {/* Feature 2 */}
-          <div className="flex items-center space-x-3">
-            <div className="w-6 h-6 bg-gray-200 rounded-full animate-pulse"></div>
-            <div className="w-28 h-4 bg-gray-200 rounded animate-pulse"></div>
-          </div>
-          {/* Feature 3 */}
-          <div className="flex items-center space-x-3">
-            <div className="w-6 h-6 bg-gray-200 rounded-full animate-pulse"></div>
-            <div className="w-40 h-4 bg-gray-200 rounded animate-pulse"></div>
-          </div>
-        </div>
       </div>
     </div>
   );
 };
 
-export default Loader;
+export default StudioLoader;
