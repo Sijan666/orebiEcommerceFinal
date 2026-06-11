@@ -1,6 +1,6 @@
 import './App.css'
+import { ReactLenis } from '@studio-freight/react-lenis'
 import { Routes, Route } from 'react-router-dom'
-import ReactLenis from 'lenis/react'
 
 // Components
 import Home from './components/pages/Home'
@@ -16,7 +16,15 @@ import ProductInside from './components/pages/ProductInside'
 
 function App() {
   return (
-    <ReactLenis root>
+    <ReactLenis 
+      root 
+      options={{
+        lerp: 0.05,
+        wheelMultiplier: 0.8,
+        smoothWheel: true,
+        syncTouch: true,
+      }}
+    >
       <Routes>
         <Route path="/" element={<RootLayouts />}>
           <Route index element={<Home />} />
