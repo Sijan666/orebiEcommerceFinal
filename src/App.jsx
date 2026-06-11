@@ -1,9 +1,10 @@
 import React, { Suspense, lazy } from 'react'
 import './App.css'
-import { ReactLenis } from 'lenis/react'
-import { Routes, Route } from 'react-router-dom'
 
+import { Routes, Route } from 'react-router-dom'
 import RootLayouts from './components/layouts/RootLayouts'
+import Loader from './components/Loader'
+import ReactLenis from 'lenis/react'
 
 const Home = lazy(() => import('./components/pages/Home'))
 const About = lazy(() => import('./components/pages/About'))
@@ -18,7 +19,7 @@ const Error = lazy(() => import('./components/pages/Error'))
 function App() {
   return (
     <ReactLenis root options={{lerp: 0.05, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: true,}}>
-      <Suspense fallback={<div className="loading-screen">Loading...</div>}>
+      <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<RootLayouts />}>
             <Route index element={<Home />} />
