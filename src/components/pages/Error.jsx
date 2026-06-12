@@ -1,20 +1,88 @@
-import Images from "../Images"
-import error2 from '../../assets/error2.gif'
-import Button from "../Button"
-import { Link } from "react-router-dom"
+import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
+const PremiumError = ({ errorCode = "404", title = "Page Not Found" }) => {
+  const navigate = useNavigate();
 
-const Error = () => {
-    return (
-        <div className="relative">
-            <Images imgSrc={error2} className={'mx-auto mt-[100px]'}/>
-            <div className="errorBtn text-center absolute left-[50%] -translate-x-[50%] bottom-[70px] ">
-                <Link to={"/"}>
-                <Button btnText={"Back to Homepage"} className={'cursor-pointer font-bold text-white bg-[#262626] border border-[#F0F0F0] rounded-lg py-4 px-5 hover:bg-transparent hover:border hover:border-[#7e7e7e] hover:text-[#262626] duration-300'}/>
-                </Link>
-            </div>
+  return (
+    <div className="relative min-h-screen bg-[#FAF9F6] text-black overflow-hidden font-sans flex items-center justify-center px-4">
+      
+      {/* Structural Background Grid Lines for Luxury Editorial Feel */}
+      <div className="absolute inset-0 grid grid-cols-4 pointer-events-none opacity-20">
+        <div className="border-r border-black/10 h-full"></div>
+        <div className="border-r border-black/10 h-full"></div>
+        <div className="border-r border-black/10 h-full"></div>
+        <div className="h-full"></div>
+      </div>
+      <div className="absolute inset-0 grid grid-rows-4 pointer-events-none opacity-20">
+        <div className="border-b border-black/10 w-full"></div>
+        <div className="border-b border-black/10 w-full"></div>
+        <div className="border-b border-black/10 w-full"></div>
+        <div className="w-full"></div>
+      </div>
+
+      {/* Decorative Premium Abstract Geometry */}
+      <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-to-tr from-neutral-200 to-transparent rounded-full blur-3xl opacity-40 pointer-events-none animate-pulse duration-[6000ms]"></div>
+
+      {/* Main Content Container */}
+      <div className="relative z-10 max-w-4xl w-full flex flex-col md:flex-row items-center justify-between gap-12 md:gap-6 border-y border-black/10 py-16 md:py-24">
+        
+        {/* Left Side: Massive Stacked Typography */}
+        <div className="relative flex flex-col items-start select-none">
+          <span className="text-xs uppercase tracking-[0.4em] text-neutral-400 font-mono mb-2">
+            Error Protocol
+          </span>
+          <h1 className="text-[120px] md:text-[180px] font-black leading-none tracking-tighter text-black select-none">
+            {errorCode}
+          </h1>
+          <div className="absolute -bottom-4 right-0 md:-right-8 bg-black text-white text-[10px] uppercase font-mono tracking-widest px-3 py-1 scale-90 md:scale-100">
+            Lost in Space
+          </div>
         </div>
-    )
-}
 
-export default Error
+        {/* Right Side: Elegant Glassmorphism Details & Navigation */}
+        <div className="max-w-md backdrop-blur-md bg-white/40 border border-white/60 shadow-[0_20px_50px_rgba(0,0,0,0.05)] p-8 md:p-10 flex flex-col justify-between transition-all duration-500 hover:shadow-[0_30px_60px_rgba(0,0,0,0.08)]">
+          <div>
+            <h2 className="text-xl md:text-2xl font-bold tracking-tight text-black uppercase mb-4">
+              {title}
+            </h2>
+            <p className="text-neutral-500 text-sm leading-relaxed mb-8">
+              The page you are looking for has been archived or relocated. The destination path is unavailable within the current secure storefront routing system.
+            </p>
+          </div>
+
+          {/* Luxury Minimalist Interactive Actions */}
+          <div className="flex flex-col gap-3 w-full">
+            <button
+              onClick={() => navigate('/')}
+              className="group relative w-full bg-black text-white text-xs font-bold tracking-[0.2em] uppercase py-4 overflow-hidden transition-all duration-300"
+            >
+              <span className="relative z-10 block transition-transform duration-500 group-hover:-translate-y-full">
+                Return To Store
+              </span>
+              <span className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-white transition-transform duration-500 translate-y-full group-hover:translate-y-0">
+                Go Home →
+              </span>
+            </button>
+
+            <button
+              onClick={() => navigate('/shop')}
+              className="group w-full border border-black/20 text-black text-xs font-bold tracking-[0.2em] uppercase py-4 transition-all duration-300 hover:border-black bg-transparent flex items-center justify-center gap-2"
+            >
+              Discover Collections
+            </button>
+          </div>
+        </div>
+
+      </div>
+
+      {/* Footer Branding Detail */}
+      <div className="absolute bottom-6 left-6 right-6 flex justify-between items-center text-[10px] font-mono tracking-widest text-neutral-400">
+        <span>© OREBI ONLINE STORE</span>
+        <span className="hidden sm:inline">STAY GENUINE</span>
+      </div>
+    </div>
+  );
+};
+
+export default PremiumError;
