@@ -53,17 +53,26 @@ const PremiumError = ({ errorCode = "404", title = "Page Not Found" }) => {
 
           {/* Luxury Minimalist Interactive Actions */}
           <div className="flex flex-col gap-3 w-full">
-            <button
-              onClick={() => navigate('/')}
-              className="group relative w-full bg-black text-white text-xs font-bold tracking-[0.2em] uppercase py-4 overflow-hidden transition-all duration-300"
-            >
-              <span className="relative z-10 block transition-transform duration-500 group-hover:-translate-y-full">
-                Return To Store
-              </span>
-              <span className="absolute inset-0 flex items-center justify-center bg-neutral-800 text-white transition-transform duration-500 translate-y-full group-hover:translate-y-0">
-                Go Home →
-              </span>
-            </button>
+<button
+  onClick={() => navigate('/')}
+  className="group relative w-full bg-black text-white text-xs font-bold tracking-[0.2em] uppercase py-4 overflow-hidden border border-black transition-colors duration-500"
+>
+  {/* Initial Text: Fades, scales down, and glides up */}
+  <span className="relative z-10 block transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-8 group-hover:opacity-0 group-hover:scale-95">
+    Return To Store
+  </span>
+
+  {/* Hover Background & Text: Smooth entry with staggered arrow */}
+  <span className="absolute inset-0 flex items-center justify-center bg-[#F5F7F9] text-black transition-transform duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] translate-y-full group-hover:translate-y-0">
+    <span className="flex items-center gap-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75 ease-out">
+      Go Home
+      {/* Arrow shoots in from the left after the text settles */}
+      <span className="-translate-x-4 opacity-0 group-hover:translate-x-0 group-hover:opacity-100 transition-all duration-500 delay-150 ease-out">
+        →
+      </span>
+    </span>
+  </span>
+</button>
 
             <button
               onClick={() => navigate('/shop')}
