@@ -42,7 +42,7 @@ const PremiumError = ({ errorCode = "404", title = "Page Not Found" }) => {
                 </div>
                 <div className="flex flex-col gap-3 w-full">
                     <button onClick={() => navigate('/')}
-                    className="group relative w-full bg-black text-white text-xs font-bold tracking-[0.2em] uppercase py-4 overflow-hidden border border-black transition-colors duration-500">
+                    className="cursor-pointer group relative w-full bg-black text-white text-xs font-bold tracking-[0.2em] uppercase py-4 overflow-hidden border border-black transition-colors duration-500">
                     <span className="relative z-10 block transition-all duration-500 ease-[cubic-bezier(0.76,0,0.24,1)] group-hover:-translate-y-8 group-hover:opacity-0 group-hover:scale-95">
                         Return To Store
                     </span>
@@ -56,7 +56,7 @@ const PremiumError = ({ errorCode = "404", title = "Page Not Found" }) => {
                     </span>
                     </button>
                     <button onClick={() => navigate('/shop')}
-                    className="group w-full border border-black/20 text-black text-xs font-bold tracking-[0.2em] uppercase py-4 transition-all duration-300 hover:border-black bg-transparent flex items-center justify-center gap-2">
+                    className="cursor-pointer group w-full border border-black/20 text-black text-xs font-bold tracking-[0.2em] uppercase py-4 transition-all duration-300 hover:border-black bg-transparent flex items-center justify-center gap-2">
                     Discover Collections
                     </button>
                 </div>
