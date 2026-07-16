@@ -26,7 +26,8 @@ const Shop = () => {
         }
         fetchAllDatas();
     }, []);
-    // Pagination 
+
+    // Pagination Logic
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     const currentItems = allData.slice(indexOfFirstItem, indexOfLastItem);
@@ -36,7 +37,7 @@ const Shop = () => {
         setCurrentPage(pageNumber);
         window.scrollTo({ top: 0, behavior: 'smooth' });
     };
-    // Pagination 
+
     const getPaginationNumbers = () => {
         const pages = [];
         if (totalPages <= 6) {
@@ -55,6 +56,7 @@ const Shop = () => {
         return pages;
     };
 
+    // MixItUp Logic
     useEffect(() => {
         let mixer;
         if (containerRef.current && currentItems.length > 0) {
@@ -75,45 +77,51 @@ const Shop = () => {
 
     return (
         <>
-        <Container className={'py-10 md:py-20 lg:py-[125px] px-4 lg:px-0'}>
-            <h3 className="text-[28px] md:text-[39px] text-[#262626] font-bold block pb-3 md:pb-5">Shop</h3>
+        {/* Breadcrumb Part */}
+        <Container className={'py-10 md:py-16 lg:py-[125px] px-4 lg:px-0'}>
+            <h3 className="text-[28px] md:text-[34px] lg:text-[39px] text-[#262626] font-bold block pb-3 md:pb-5">Shop</h3>
             <Flex className={'text-[12px] text-[#767676] gap-x-2 items-center'}>
                 <p>Home</p>
                 <FaArrowRight />
                 <p>Shop</p>
             </Flex>
         </Container>
-        <Container className={'px-4 lg:px-0 pb-[60px] md:pb-[100px]'}>
+        <Container className={'px-4 lg:px-0 pb-16 md:pb-20 lg:pb-[100px]'}>
             <Flex className={'flex-col lg:flex-row justify-between items-start gap-x-8 gap-y-10 lg:gap-y-0'}>
                 {/* Sidebar */}
                 <div className="sideBar w-full lg:w-[25%] pb-5 lg:pb-[30px]">
                     <div className="category">
                         <h4 className='text-[#262626] font-bold text-[18px] md:text-[20px] pb-4 md:pb-[30px]'>Shop By Category</h4>
-                        <p data-filter="all" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>All Products</p>
-                        <p data-filter=".catOne" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 1</p>
-                        <p data-filter=".catTwo" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 2</p>
-                        <p data-filter=".catThree" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 3</p>
-                        <p data-filter=".catFour" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 4</p>
-                        <p data-filter=".catFive" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 5</p>
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-col lg:flex-nowrap gap-x-4">
+                            <p data-filter="all" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>All Products</p>
+                            <p data-filter=".catOne" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 1</p>
+                            <p data-filter=".catTwo" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 2</p>
+                            <p data-filter=".catThree" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 3</p>
+                            <p data-filter=".catFour" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 4</p>
+                            <p data-filter=".catFive" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300'>Category 5</p>
+                        </div>
                     </div>
                     <div className="color py-6 lg:py-10">
                         <h4 className='text-[#262626] font-bold text-[18px] md:text-[20px] pb-4 md:pb-[30px]'>Shop by Color</h4>
-                        <div data-filter="all" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
-                            <p>All Color</p>
-                        </div>
-                        <div data-filter=".catOne" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
-                            <div className="rounded-[50%] h-3 w-3 md:h-4 md:w-4 bg-black"></div>
-                            <p>Color 1</p>
-                        </div>
-                        <div data-filter=".catTwo" className='text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-[15px] md:pb-[22px] my-2.5 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
-                            <div className="rounded-[50%] h-3 w-3 md:h-4 md:w-4 bg-[#FF8686]"></div>
-                            <p>Color 2</p>
+                        <div className="flex flex-col sm:flex-row sm:flex-wrap lg:flex-col lg:flex-nowrap gap-x-4">
+                            <div data-filter="all" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
+                                <p>All Color</p>
+                            </div>
+                            <div data-filter=".catOne" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
+                                <div className="rounded-[50%] h-3 w-3 md:h-4 md:w-4 bg-black"></div>
+                                <p>Color 1</p>
+                            </div>
+                            <div data-filter=".catTwo" className='w-full sm:w-[48%] lg:w-full text-[#767676] text-sm md:text-base border-b border-[#F0F0F0] pb-2.5 md:pb-[22px] my-2 md:my-[15px] lg:my-[25px] cursor-pointer hover:font-bold hover:text-black duration-300 flex gap-x-2.5 items-center'>
+                                <div className="rounded-[50%] h-3 w-3 md:h-4 md:w-4 bg-[#FF8686]"></div>
+                                <p>Color 2</p>
+                            </div>
                         </div>
                     </div>
                 </div>
                 {/* Main Content */}
                 <div className="w-full lg:w-[75%]">
-                    <div className="firstLine flex flex-col sm:flex-row justify-between items-start sm:items-center pb-[25px] md:pb-10 lg:pb-[50px] gap-y-4">
+                    {/* Top Filtering Bar */}
+                    <div className="firstLine flex flex-col md:flex-row justify-between items-start md:items-center pb-6 md:pb-10 lg:pb-[50px] gap-y-4 md:gap-y-0">
                         <div className='flex gap-x-3'>
                             <div className="p-2 border border-[#F0F0F0] bg-black text-white cursor-pointer hover:bg-black hover:text-white transition-all">
                                 <IoGrid className='text-[18px] md:text-[20px]'/>
@@ -122,24 +130,25 @@ const Shop = () => {
                                 <CiGrid2H className='text-[18px] md:text-[20px]'/>
                             </div>
                         </div>
-                        <div className="flex flex-wrap items-center gap-x-3 md:gap-x-5 gap-y-3 w-full sm:w-auto">
-                            <div className="flex gap-x-2 md:gap-x-3 items-center">
+                        {/* Dropdowns */}
+                        <div className="flex flex-col sm:flex-row items-start sm:items-center gap-y-3 sm:gap-x-5 w-full md:w-auto">
+                            <div className="flex justify-between sm:justify-start gap-x-2 items-center w-full sm:w-auto">
                                 <p className='text-[#767676] text-sm md:text-base whitespace-nowrap'>Sort by:</p>
-                                <select className='px-2 md:px-4 py-1.5 md:py-2 text-[#767676] text-sm md:text-base border border-[#F0F0F0] outline-none w-28 md:w-40 cursor-pointer'>
+                                <select className='flex-1 sm:flex-none px-2 md:px-4 py-1.5 md:py-2 text-[#767676] text-sm md:text-base border border-[#F0F0F0] outline-none w-full max-w-[180px] sm:w-28 md:w-40 cursor-pointer'>
                                     <option value="">Featured</option>
                                     <option value="">Best Sellers</option>
                                     <option value="">New Arrivals</option>
                                 </select>
                             </div>
-                            <div className="flex gap-x-2 md:gap-x-3 items-center">
-                                <p className='text-[#767676] text-sm md:text-base whitespace-nowrap'>Shows:</p>
+                            <div className="flex justify-between sm:justify-start gap-x-2 items-center w-full sm:w-auto">
+                                <p className='text-[#767676] text-sm md:text-base whitespace-nowrap'>Show:</p>
                                 <select 
                                     value={itemsPerPage}
                                     onChange={(e) => {
                                         setItemsPerPage(Number(e.target.value));
                                         setCurrentPage(1);
                                     }}
-                                    className='px-2 md:px-4 py-1.5 md:py-2 text-[#767676] text-sm md:text-base border border-[#F0F0F0] outline-none w-16 md:w-20 cursor-pointer'
+                                    className='flex-1 sm:flex-none px-2 md:px-4 py-1.5 md:py-2 text-[#767676] text-sm md:text-base border border-[#F0F0F0] outline-none w-full max-w-[180px] sm:w-16 md:w-20 cursor-pointer'
                                 >
                                     <option value="12">12</option>
                                     <option value="24">24</option>
@@ -149,12 +158,13 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
+                    {/* Product */}
                     <div className="pt-2 w-full" ref={containerRef}>
-                        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8'>
+                        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8'>
                             {currentItems.map((item, index) => {
                                 const filterClass = dummyCategories[index % dummyCategories.length];
                                 return (
-                                    <div key={item.id} className={`mix ${filterClass}`}>
+                                    <div key={item.id} className={`mix ${filterClass} w-full`}>
                                         <Product
                                             productImg={item.thumbnail}
                                             badgeText={item.stock}
@@ -167,33 +177,31 @@ const Shop = () => {
                         </div>
                         {/* Pagination */}
                         {totalPages > 1 && (
-                            <div className="flex justify-center md:justify-end mt-[50px] md:mt-20 w-full">
-                                <div className="flex items-center gap-x-1 md:gap-x-2">
-                                    {/* Prev Button */}
+                            <div className="flex justify-center md:justify-end mt-12 md:mt-20 w-full overflow-hidden">
+                                <div className="flex items-center gap-x-1">
                                     <button
                                         onClick={() => currentPage > 1 && handlePageChange(currentPage - 1)}
                                         disabled={currentPage === 1}
-                                        className={`group flex items-center gap-x-2 px-3 md:px-4 py-2 rounded text-xs md:text-sm font-medium tracking-wide transition-all duration-300 ${
+                                        className={`group flex items-center gap-x-1 sm:gap-x-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded text-[10px] sm:text-xs md:text-sm font-medium tracking-wide transition-all duration-300 ${
                                             currentPage === 1 
                                                 ? 'text-gray-400 cursor-not-allowed border border-transparent' 
                                                 : 'text-black border border-[#F0F0F0] hover:bg-black hover:text-white'
                                         }`}
                                     >
-                                        <FaArrowLeft className={`text-[10px] md:text-xs transition-transform duration-300 ${currentPage !== 1 && 'group-hover:-translate-x-1'}`} /> 
+                                        <FaArrowLeft className={`text-[9px] sm:text-[10px] md:text-xs transition-transform duration-300 ${currentPage !== 1 && 'group-hover:-translate-x-1'}`} /> 
                                         <span className="hidden sm:block">Prev</span>
                                     </button>
-                                    {/* Page Numbers */}
-                                    <div className="flex items-center gap-x-1 md:gap-x-2 px-1 md:px-2">
+                                    <div className="flex items-center gap-x-0.5 sm:gap-x-1 px-0.5 sm:px-1">
                                         {getPaginationNumbers().map((page, index) => (
                                             page === '...' ? (
-                                                <span key={`ellipsis-${index}`} className="px-1 md:px-2 text-gray-500 font-bold tracking-widest select-none">
+                                                <span key={`ellipsis-${index}`} className="px-1 sm:px-2 text-gray-500 font-bold tracking-widest select-none text-xs">
                                                     ...
                                                 </span>
                                             ) : (
                                                 <button
                                                     key={page}
                                                     onClick={() => handlePageChange(page)}
-                                                    className={`flex h-8 w-8 md:h-9 md:w-9 items-center justify-center rounded text-xs md:text-sm transition-all duration-300 ${
+                                                    className={`flex h-7 w-7 sm:h-8 sm:w-8 md:h-9 md:w-9 items-center justify-center rounded text-[10px] sm:text-xs md:text-sm transition-all duration-300 ${
                                                         currentPage === page 
                                                             ? 'bg-black text-white font-bold' 
                                                             : 'text-[#767676] border border-[#F0F0F0] hover:bg-black hover:text-white'
@@ -204,18 +212,17 @@ const Shop = () => {
                                             )
                                         ))}
                                     </div>
-                                    {/* Next Button */}
                                     <button
                                         onClick={() => currentPage < totalPages && handlePageChange(currentPage + 1)}
                                         disabled={currentPage === totalPages}
-                                        className={`group flex items-center gap-x-2 px-3 md:px-4 py-2 rounded text-xs md:text-sm font-medium tracking-wide transition-all duration-300 ${
+                                        className={`group flex items-center gap-x-1 sm:gap-x-2 px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 rounded text-[10px] sm:text-xs md:text-sm font-medium tracking-wide transition-all duration-300 ${
                                             currentPage === totalPages 
                                                 ? 'text-gray-400 cursor-not-allowed border border-transparent' 
                                                 : 'text-black border border-[#F0F0F0] hover:bg-black hover:text-white'
                                         }`}
                                     >
                                         <span className="hidden sm:block">Next</span> 
-                                        <FaArrowRight className={`text-[10px] md:text-xs transition-transform duration-300 ${currentPage !== totalPages && 'group-hover:translate-x-1'}`} />
+                                        <FaArrowRight className={`text-[9px] sm:text-[10px] md:text-xs transition-transform duration-300 ${currentPage !== totalPages && 'group-hover:translate-x-1'}`} />
                                     </button>
                                 </div>
                             </div>
