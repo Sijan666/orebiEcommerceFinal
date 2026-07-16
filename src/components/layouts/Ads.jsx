@@ -6,25 +6,26 @@ import Container from '../Container'
 import Flex from '../Flex'
 import Images from '../Images'
 
-
 const Ads = () => {
     return (
-        <div className="lg:py-[135px] py-[50px]">
+        <div className="py-[50px] md:py-20 lg:py-[135px]">
             <Container>
-                <Flex className="flex-wrap lg:flex-nowrap lg:justify-between lg:gap-x-8 gap-y-4">
-                    <div className="lg:leftSide lg:w-1/2 relative">
-                        <Link to={'/shop'}>
+                <Flex className="flex-col lg:flex-row flex-wrap lg:flex-nowrap lg:justify-between lg:gap-x-8 gap-y-4 sm:gap-y-6 md:gap-y-8 lg:gap-y-0">
+                    {/* Left Banner */}
+                    <div className="lg:leftSide w-full lg:w-1/2 relative flex justify-center">
+                        <Link to={'/shop'} className="w-full">
                         <Images imgSrc={sh1} />
                         </Link>
                     </div>
-                    <div className="lg:rightSide lg:w-1/2 relative">
-                        <div className="lg:pb-8">
-                            <Link to={'/shop'}>
+                    {/* Right Banners */}
+                    <div className="lg:rightSide w-full lg:w-1/2 relative">
+                        <div className="lg:pb-8 w-full flex justify-center">
+                            <Link to={'/shop'} className="w-full">
                             <Images imgSrc={sh2} />
                             </Link>
                         </div>
-                        <div className='mt-4 lg:mt-0'>
-                            <Link to={'/shop'}>
+                        <div className='mt-4 sm:mt-6 md:mt-8 lg:mt-0 w-full flex justify-center'>
+                            <Link to={'/shop'} className="w-full">
                             <Images imgSrc={sh3} />
                             </Link>
                         </div>
