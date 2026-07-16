@@ -1,56 +1,52 @@
-import { Link, Links } from "react-router-dom"
-import Container from "../Container"
-import Images from "../Images"
+import { Link } from "react-router-dom";
+import Images from "../Images";
 
-import intro from '../../assets/Intro.png'
-import bg2 from '../../assets/bg2.png'
-import bg3 from '../../assets/bg3.png'
+// Image imports
+import intro from '../../assets/Intro.png';
+import bg2 from '../../assets/bg2.png';
+import bg3 from '../../assets/bg3.png';
 
+// Swiper JS imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Autoplay } from 'swiper/modules';
 
-// slick slider start
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
-import Slider from "react-slick";
-// slick slider end
-
-
-
-
-
+// Swiper CSS
+import 'swiper/css';
+import 'swiper/css/autoplay';
 
 const Banner = () => {
-
-    const settings = {
-        dots: false,
-        infinite: true,
-        slidesToShow: 1,
-        slidesToScroll: 1,
-        speed: 1500,
-        arrows: false,
-        autoplay : true,
-        autoSpeed : 1500,
-    };
     return (
-        <div className="py-2">
-            <Slider {...settings}>
-                <div className="">
-                    <Link to={'/productinside'}>
-                        <Images imgSrc={intro} className={"w-full mx-auto"}/>
+        <div className="py-2 w-full overflow-hidden">
+            <Swiper
+                modules={[Autoplay]}
+                spaceBetween={0}
+                slidesPerView={1}
+                loop={true}
+                speed={1500}
+                autoplay={{
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }}
+                className="w-full h-full"
+            >
+                <SwiperSlide>
+                    <Link to={'/productinside'} className="block w-full">
+                        <Images imgSrc={intro} className="w-full h-auto object-cover mx-auto" />
                     </Link>
-                </div>
-                <div className="">
-                    <Link to={'/shop'}>
-                        <Images imgSrc={bg2} className={"w-full mx-auto"}/>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to={'/shop'} className="block w-full">
+                        <Images imgSrc={bg2} className="w-full h-auto object-cover mx-auto" />
                     </Link>
-                </div>
-                <div className="">
-                    <Link to={'/shop'}>
-                        <Images imgSrc={bg3} className={"w-full mx-auto"}/>
+                </SwiperSlide>
+                <SwiperSlide>
+                    <Link to={'/shop'} className="block w-full">
+                        <Images imgSrc={bg3} className="w-full h-auto object-cover mx-auto" />
                     </Link>
-                </div>
-            </Slider>
+                </SwiperSlide>
+            </Swiper>
         </div>
-    )
+    );
 }
 
-export default Banner
+export default Banner;
