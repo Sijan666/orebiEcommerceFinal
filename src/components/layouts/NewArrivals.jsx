@@ -17,7 +17,7 @@ const NewArrivals = () => {
     return (
         <div className="lg:pt-8 lg:pb-20 py-10">
             <Container>
-                <h3 className="text-[39px] text-[#262626] font-bold block pb-[30px]">New Arrivals</h3>
+                <h3 className="text-[26px] md:text-[32px] lg:text-[39px] text-[#262626] font-bold block pb-5 lg:pb-[30px]">New Arrivals</h3>
                 <div className="relative lg:-mx-2"> 
                     <Swiper
                         modules={[Navigation, Autoplay]}
