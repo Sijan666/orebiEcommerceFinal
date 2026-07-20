@@ -106,8 +106,6 @@ const IndividualProduct = () => {
                     </div>
                 </Container>
             </div>
-            
-            {/* ... Rest of your UI Code remains exactly the same ... */}
             <Container className="px-4 sm:px-5 lg:px-8 pt-6 md:pt-10 lg:pt-16">
                 <div className="flex flex-col lg:flex-row gap-y-8 md:gap-y-12 lg:gap-x-12 xl:gap-x-24">
                     {/* LEFT SIDE */}
@@ -133,11 +131,10 @@ const IndividualProduct = () => {
                                     {Math.round(product.discountPercentage)}% OFF
                                 </div>
                             )}
-                            
                             <img 
                                 src={activeImg} 
                                 alt={product.title} 
-                                className="w-full max-h-[250px] sm:max-h-[350px] lg:max-h-[450px] object-contain mix-blend-multiply transition-transform duration-700 ease-out group-hover:scale-110" 
+                                className="w-full max-h-[250px] sm:max-h-[350px] lg:max-h-[450px] object-contain mix-blend-multiply transition-transform duration-700 ease-out" 
                             />
                         </div>
                     </div>
@@ -199,7 +196,7 @@ const IndividualProduct = () => {
                             </div>
                             <button
                                 onClick={handleAddToCart}
-                                className="w-full sm:flex-1 h-12 sm:h-14 flex items-center justify-center gap-2 sm:gap-3 bg-black text-white font-bold text-[14px] sm:text-[16px] rounded-full hover:bg-[#1a1a1a] transition-all duration-300 ease-out hover:shadow-[0_10px_40px_rgba(0,0,0,0.2)] hover:-translate-y-1 focus:outline-none"
+                                className="w-full sm:flex-1 h-12 sm:h-14 flex items-center justify-center gap-2 sm:gap-3 bg-black text-white font-bold text-[14px] sm:text-[16px] rounded-full hover:bg-[#1a1a1a] transition-all duration-300 ease-out focus:outline-none"
                             >
                                 <FiShoppingCart className="text-lg sm:text-xl" /> 
                                 <span>Add to Cart</span>
