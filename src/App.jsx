@@ -3,6 +3,7 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ReactLenis from 'lenis/react';
 import Loader from './components/Loader';
+import IndividualProduct from './components/pages/IndividualProduct';
 
 const RootLayouts = lazy(() => import('./components/layouts/RootLayouts'));
 const Home = lazy(() => import('./components/pages/Home'));
@@ -27,6 +28,7 @@ function App() {
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/productinside" element={<ProductInside />} />
+            <Route path="/indiProduct" element={<IndividualProduct />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
