@@ -9,7 +9,6 @@ const Home = lazy(() => import('./components/pages/Home'));
 const About = lazy(() => import('./components/pages/About'));
 const Shop = lazy(() => import('./components/pages/Shop'));
 const ContactUs = lazy(() => import('./components/pages/ContactUs'));
-const Journal = lazy(() => import('./components/pages/Journal'));
 const Login = lazy(() => import('./components/pages/Login'));
 const Signup = lazy(() => import('./components/pages/Signup'));
 const ProductInside = lazy(() => import('./components/pages/ProductInside'));
@@ -25,7 +24,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/shop" element={<Shop />} />
             <Route path="/contact" element={<ContactUs />} />
-            <Route path="/journal" element={<Journal />} />
             <Route path="/login" element={<Login />} />
             <Route path="/signup" element={<Signup />} />
             <Route path="/productinside" element={<ProductInside />} />
