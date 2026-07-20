@@ -9,14 +9,12 @@ const Header = () => {
         <>
         <Container className={'py-4 lg:py-8'}>
             <div className="flex flex-col lg:flex-row gap-y-5 lg:gap-y-0 items-center">
-                
                 {/* Logo Part */}
                 <div className="logo w-full lg:w-[40%] flex justify-center lg:justify-start">
                     <Link to={'/'}>
                     <Images imgSrc={Logo}/>
                     </Link>
                 </div>
-
                 {/* Menu Part */}
                 <div className="menuPart w-full lg:w-[60%] mx-auto flex justify-center lg:justify-start">
                     <ul className="flex flex-wrap justify-center gap-x-5 sm:gap-x-7 lg:gap-x-10 gap-y-2">
@@ -42,7 +40,6 @@ const Header = () => {
                         </li>
                     </ul>
                 </div>
-                
             </div>
         </Container>
         </>
