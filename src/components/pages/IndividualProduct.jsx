@@ -1,166 +1,203 @@
-import React, { useState } from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { FiShoppingCart, FiStar, FiChevronLeft, FiMinus, FiPlus, FiTruck, FiShield } from 'react-icons/fi';
+import React, { useState, useEffect } from 'react';
+import { useLocation, useNavigate, Link } from 'react-router-dom';
+import { FiShoppingCart, FiStar, FiChevronLeft, FiMinus, FiPlus, FiTruck, FiShield, FiCheck } from 'react-icons/fi';
 import Container from '../Container';
-import Flex from '../Flex';
 
-const ProductInside = () => {
+const IndividualProduct = () => {
     const location = useLocation();
     const navigate = useNavigate();
-    const product = location.state?.item; 
+    const product = location.state?.item;
 
     const [quantity, setQuantity] = useState(1);
     const [activeImg, setActiveImg] = useState(product?.thumbnail);
 
+    useEffect(() => {
+        window.scrollTo(0, 0);
+    }, []);
+
     if (!product) {
         return (
-            <Container className="py-20 lg:py-32 px-4 text-center">
-                <h2 className="text-2xl md:text-3xl font-bold text-gray-800 mb-4">No Product Selected!</h2>
-                <p className="text-gray-500 mb-8">Please select a product from the shop or search menu.</p>
-                <button 
-                    onClick={() => navigate('/shop')} 
-                    className="px-8 py-3 bg-black text-white font-medium rounded-full hover:bg-gray-800 transition-colors"
+            <Container className="min-h-[70vh] flex flex-col items-center justify-center px-4 text-center">
+                <div className="w-20 h-20 md:w-24 md:h-24 bg-gray-50 rounded-full flex items-center justify-center mb-6">
+                    <FiShoppingCart className="text-3xl md:text-4xl text-gray-300" />
+                </div>
+                <h2 className="text-2xl md:text-3xl font-extrabold text-gray-900 mb-3 tracking-tight">No Product Selected</h2>
+                <p className="text-gray-500 mb-8 max-w-md mx-auto text-base md:text-lg px-4">It looks like you arrived here by accident. Let's get you back to the shop to find what you're looking for.</p>
+                <button
+                    onClick={() => navigate('/shop')}
+                    className="w-full sm:w-auto px-8 py-3.5 bg-black text-white font-bold rounded-full hover:bg-gray-800 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-1 transition-all duration-300 ease-out"
                 >
-                    Go to Shop
+                    Return to Shop
                 </button>
             </Container>
         );
     }
 
     const handleAddToCart = () => {
-        alert(`Added ${quantity} "${product.title}" to cart!`);
+        alert(`Successfully added ${quantity}x "${product.title}" to your cart!`);
     };
 
     return (
-        <div className="bg-white py-10 md:py-16 lg:py-24">
-            <Container className="px-4 lg:px-0">
-                {/* Back Button */}
-                <button 
-                    onClick={() => navigate(-1)} 
-                    className="flex items-center gap-2 text-sm text-gray-500 hover:text-black transition-colors mb-8 font-medium"
-                >
-                    <FiChevronLeft className="text-lg" /> Back to previous
-                </button>
-
-                <Flex className="flex-col lg:flex-row gap-y-10 lg:gap-x-16 items-start">
-                    
-                    {/* LEFT SIDE: Image Gallery */}
-                    <div className="w-full lg:w-1/2 flex flex-col-reverse md:flex-row gap-4">
-                        {/* Thumbnails */}
-                        <div className="flex md:flex-col gap-3 overflow-x-auto md:overflow-visible pb-2 md:pb-0">
+        <div className="bg-white min-h-screen pb-16 md:pb-24">
+            {/* Breadcrumb & Back Nav */}
+            <div className="border-b border-gray-100 bg-white sticky top-[60px] md:top-[70px] z-30">
+                <Container className="px-4 sm:px-5 lg:px-8 py-3 md:py-4 flex items-center justify-between gap-4">
+                    <button
+                        onClick={() => navigate(-1)}
+                        className="group shrink-0 flex items-center gap-1 sm:gap-2 text-[13px] sm:text-[14px] font-medium text-gray-500 hover:text-black transition-colors"
+                    >
+                        <FiChevronLeft className="text-lg group-hover:-translate-x-1 transition-transform duration-300" />
+                        <span className="hidden sm:block">Back to previous</span>
+                        <span className="sm:hidden">Back</span>
+                    </button>
+                    {/* Breadcrumb Mobile */}
+                    <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-[13px] font-medium text-gray-400 overflow-x-auto whitespace-nowrap scrollbar-hide">
+                        <Link to="/" className="hover:text-black transition-colors shrink-0">Home</Link>
+                        <span className="shrink-0">/</span>
+                        {/* <Link to={`/category/${product.category?.toLowerCase().replace(' ', '-')}`} className="hover:text-black transition-colors capitalize shrink-0">
+                            {product.category}
+                        </Link>
+                        <span className="shrink-0">/</span> */}
+                        <span className="text-black truncate max-w-[120px] sm:max-w-[200px]">{product.title}</span>
+                    </div>
+                </Container>
+            </div>
+            <Container className="px-4 sm:px-5 lg:px-8 pt-6 md:pt-10 lg:pt-16">
+                <div className="flex flex-col lg:flex-row gap-y-8 md:gap-y-12 lg:gap-x-12 xl:gap-x-24">
+                    {/* LEFT SIDE */}
+                    <div className="w-full lg:w-[55%] flex flex-col-reverse md:flex-row gap-3 md:gap-4 lg:gap-6">
+                        {/* Mobile */}
+                        <div className="flex md:flex-col gap-2.5 sm:gap-3 lg:gap-4 overflow-x-auto md:overflow-visible pb-1 md:pb-0 scrollbar-hide snap-x snap-mandatory">
                             {product.images?.slice(0, 4).map((img, index) => (
-                                <div 
-                                    key={index} 
+                                <div
+                                    key={index}
                                     onClick={() => setActiveImg(img)}
-                                    className={`w-20 h-20 shrink-0 cursor-pointer rounded-xl overflow-hidden border-2 transition-all ${activeImg === img ? 'border-black' : 'border-gray-100 hover:border-gray-300'}`}
+                                    className={`relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 shrink-0 snap-start cursor-pointer rounded-[14px] lg:rounded-2xl overflow-hidden transition-all duration-300 bg-[#F8F9FA] ${
+                                        activeImg === img 
+                                            ? 'ring-2 ring-black ring-offset-2' 
+                                            : 'border border-gray-200 hover:border-gray-400'
+                                    }`}
                                 >
-                                    <img src={img} alt="thumbnail" className="w-full h-full object-cover bg-gray-50" />
+                                    <img src={img} alt={`Thumbnail ${index + 1}`} className="w-full h-full object-contain p-1.5 sm:p-2 mix-blend-multiply" />
                                 </div>
                             ))}
                         </div>
-
                         {/* Main Image */}
-                        <div className="flex-1 w-full bg-gray-50 rounded-3xl p-8 flex items-center justify-center border border-gray-100 relative">
-                            {/* Stock Badge */}
-                            <div className="absolute top-6 left-6 bg-black text-white text-[11px] font-bold px-3 py-1.5 rounded-full uppercase tracking-wider">
-                                {product.availabilityStatus || 'In Stock'}
-                            </div>
-                            <img src={activeImg} alt={product.title} className="w-full max-h-[400px] object-contain hover:scale-105 transition-transform duration-500" />
-                        </div>
-                    </div>
-
-                    {/* RIGHT SIDE: Product Details */}
-                    <div className="w-full lg:w-1/2 lg:py-5">
-                        <div className="mb-2 flex items-center gap-2">
-                            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{product.category}</span>
-                            <span className="w-1 h-1 rounded-full bg-gray-300"></span>
-                            <span className="text-xs font-bold text-gray-400 uppercase tracking-widest">{product.brand || 'Generic'}</span>
-                        </div>
-                        
-                        <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight mb-4">
-                            {product.title}
-                        </h1>
-
-                        <div className="flex items-center gap-4 mb-6">
-                            <div className="flex items-center text-[#FFC700]">
-                                {[...Array(5)].map((_, i) => (
-                                    <FiStar key={i} className={i < Math.round(product.rating) ? "fill-current" : "text-gray-300"} />
-                                ))}
-                            </div>
-                            <p className="text-sm text-gray-500 font-medium">({product.rating} Rating)</p>
-                        </div>
-
-                        <div className="flex items-end gap-3 mb-6 border-b border-gray-100 pb-6">
-                            <p className="text-4xl font-bold text-black">${product.price}</p>
-                            <p className="text-lg text-gray-400 line-through mb-1 font-medium">
-                                ${Math.round(product.price * (1 + (product.discountPercentage || 0) / 100))}
-                            </p>
-                            {product.discountPercentage && (
-                                <div className="ml-2 bg-red-100 text-red-600 text-xs font-bold px-2.5 py-1 rounded-md mb-1.5">
+                        <div className="flex-1 w-full min-h-[300px] sm:min-h-[400px] lg:min-h-[500px] bg-[#F8F9FA] rounded-[24px] lg:rounded-[32px] p-6 sm:p-10 flex items-center justify-center relative overflow-hidden group">
+                            {/* Status Badge */}
+                            {product.discountPercentage > 0 && (
+                                <div className="absolute top-4 left-4 sm:top-6 sm:left-6 bg-red-500 text-white text-[10px] sm:text-[12px] font-extrabold px-3 sm:px-4 py-1.5 rounded-full uppercase tracking-wider z-10 shadow-lg shadow-red-500/30">
                                     {Math.round(product.discountPercentage)}% OFF
                                 </div>
                             )}
+                            <img 
+                                src={activeImg} 
+                                alt={product.title} 
+                                className="w-full max-h-[250px] sm:max-h-[350px] lg:max-h-[450px] object-contain mix-blend-multiply transition-transform duration-700 ease-out" 
+                            />
                         </div>
-
-                        <p className="text-gray-600 leading-relaxed mb-8">
+                    </div>
+                    {/* RIGHT SIDE: Product Content */}
+                    <div className="w-full lg:w-[45%] flex flex-col justify-center">
+                        <div className="mb-3 sm:mb-4">
+                            <h3 className="text-[10px] sm:text-[11px] font-bold text-gray-400 uppercase tracking-[0.2em] mb-2 sm:mb-3">
+                                {product.brand || 'Premium Collection'}
+                            </h3>
+                            <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-[42px] font-extrabold text-gray-900 leading-[1.2] lg:leading-[1.1] tracking-tight mb-3 sm:mb-4">
+                                {product.title}
+                            </h1>
+                        </div>
+                        {/* Reviews */}
+                        <div className="flex items-center gap-2 sm:gap-3 mb-6 sm:mb-8">
+                            <div className="flex items-center gap-0.5 sm:gap-1">
+                                {[...Array(5)].map((_, i) => (
+                                    <FiStar 
+                                        key={i} 
+                                        className={`text-[13px] sm:text-[15px] ${i < Math.round(product.rating) ? "fill-[#111] text-[#111]" : "text-gray-200"}`} 
+                                    />
+                                ))}
+                            </div>
+                            <span className="text-[13px] sm:text-[14px] text-gray-500 font-medium pt-0.5">
+                                {product.rating} / 5.0
+                            </span>
+                        </div>
+                        {/* Price Tag */}
+                        <div className="flex items-end gap-3 sm:gap-4 mb-6 sm:mb-8">
+                            <span className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-black tracking-tight">
+                                ${product.price}
+                            </span>
+                            {product.discountPercentage > 0 && (
+                                <span className="text-lg sm:text-xl md:text-2xl text-gray-400 line-through font-medium mb-0.5 sm:mb-1">
+                                    ${Math.round(product.price * (1 + product.discountPercentage / 100))}
+                                </span>
+                            )}
+                        </div>
+                        {/* Description */}
+                        <p className="text-gray-500 text-[14px] sm:text-[16px] leading-relaxed mb-8 sm:mb-10 border-b border-gray-100 pb-8 sm:pb-10">
                             {product.description}
                         </p>
-
-                        {/* Quantity & Add to Cart */}
-                        <div className="flex flex-col sm:flex-row gap-4 mb-10">
+                        {/* Action Area - on Mobile */}
+                        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 mb-8 sm:mb-10 w-full">
                             {/* Quantity Selector */}
-                            <div className="flex items-center justify-between w-full sm:w-36 bg-gray-50 border border-gray-200 rounded-full px-4 py-3.5">
-                                <button 
+                            <div className="flex items-center justify-between w-full sm:w-[140px] h-12 sm:h-14 bg-gray-50 border border-gray-200 rounded-full px-4 sm:px-5 shrink-0">
+                                <button
                                     onClick={() => setQuantity(prev => prev > 1 ? prev - 1 : 1)}
-                                    className="text-gray-500 hover:text-black transition-colors p-1"
+                                    className="text-gray-400 hover:text-black cursor-pointer transition-colors w-8 h-8 flex items-center justify-center focus:outline-none"
                                 >
-                                    <FiMinus />
+                                    <FiMinus className="text-base sm:text-lg" />
                                 </button>
-                                <span className="font-bold text-lg">{quantity}</span>
-                                <button 
+                                <span className="font-bold text-base sm:text-lg text-black">{quantity}</span>
+                                <button
                                     onClick={() => setQuantity(prev => prev < (product.stock || 10) ? prev + 1 : prev)}
-                                    className="text-gray-500 hover:text-black transition-colors p-1"
+                                    className="text-gray-400 hover:text-black cursor-pointer transition-colors w-8 h-8 flex items-center justify-center focus:outline-none"
                                 >
-                                    <FiPlus />
+                                    <FiPlus className="text-base sm:text-lg" />
                                 </button>
                             </div>
-
                             {/* Add to Cart Button */}
-                            <button 
+                            <button
                                 onClick={handleAddToCart}
-                                className="flex-1 flex items-center justify-center gap-2 bg-black text-white font-bold text-lg rounded-full py-3.5 hover:bg-gray-800 transition-colors shadow-lg hover:shadow-xl hover:-translate-y-0.5"
+                                className="w-full cursor-pointer sm:flex-1 h-12 sm:h-14 flex items-center justify-center gap-2 sm:gap-3 bg-black text-white font-bold text-[14px] sm:text-[16px] rounded-full hover:bg-[#1a1a1a] transition-all duration-300 ease-out focus:outline-none"
                             >
-                                <FiShoppingCart className="text-xl" /> Add to Cart
+                                <FiShoppingCart className="text-lg sm:text-xl" /> 
+                                <span>Add to Cart</span>
                             </button>
                         </div>
-
-                        {/* Extra Features */}
-                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-gray-50 rounded-2xl p-5 border border-gray-100">
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black shadow-sm shrink-0">
-                                    <FiTruck className="text-lg" />
+                        {/* Feature Tags */}
+                        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div className="flex items-center gap-3 sm:gap-4 bg-gray-50/50 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-100">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center text-black shadow-sm shrink-0">
+                                    <FiTruck className="text-lg sm:text-xl" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold text-gray-900">Free Shipping</p>
-                                    <p className="text-xs text-gray-500">Orders over $50</p>
+                                    <h4 className="text-[13px] sm:text-[14px] font-bold text-gray-900 mb-0.5">Free Delivery</h4>
+                                    <p className="text-[11px] sm:text-[12px] text-gray-500">Orders over $100</p>
                                 </div>
                             </div>
-                            <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-white flex items-center justify-center text-black shadow-sm shrink-0">
-                                    <FiShield className="text-lg" />
+                            <div className="flex items-center gap-3 sm:gap-4 bg-gray-50/50 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-100">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center text-black shadow-sm shrink-0">
+                                    <FiShield className="text-lg sm:text-xl" />
                                 </div>
                                 <div>
-                                    <p className="text-sm font-bold text-gray-900">1 Year Warranty</p>
-                                    <p className="text-xs text-gray-500">100% Secure Checkout</p>
+                                    <h4 className="text-[13px] sm:text-[14px] font-bold text-gray-900 mb-0.5">Secure Transaction</h4>
+                                    <p className="text-[11px] sm:text-[12px] text-gray-500">100% encrypted</p>
+                                </div>
+                            </div>
+                            <div className="flex items-center gap-3 sm:gap-4 bg-gray-50/50 p-3 sm:p-4 rounded-xl sm:rounded-2xl border border-gray-100 sm:col-span-2">
+                                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-white flex items-center justify-center text-black shadow-sm shrink-0">
+                                    <FiCheck className="text-lg sm:text-xl" />
+                                </div>
+                                <div>
+                                    <h4 className="text-[13px] sm:text-[14px] font-bold text-gray-900 mb-0.5">In Stock Ready to Ship</h4>
+                                    <p className="text-[11px] sm:text-[12px] text-gray-500">{product.availabilityStatus || `${product.stock} items available`}</p>
                                 </div>
                             </div>
                         </div>
-
                     </div>
-                </Flex>
+                </div>
             </Container>
         </div>
     );
 };
 
-export default ProductInside;
+export default IndividualProduct;
