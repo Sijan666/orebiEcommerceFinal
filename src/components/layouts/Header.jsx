@@ -19,14 +19,12 @@ const Header = () => {
     const [allProducts, setAllProducts] = useState([]);
     const [showSearchDropdown, setShowSearchDropdown] = useState(false);
 
-    // FIX: Derived States (Calculated automatically during render, NO useEffect needed!)
-    // Er fole apnar oi "cascading renders" error ta ar ashbe na.
     const isSearching = searchQuery.trim() !== "" && searchQuery !== debouncedSearch;
     
     const searchResults = debouncedSearch.trim() !== "" 
         ? allProducts.filter((product) => 
             product.title.toLowerCase().includes(debouncedSearch.toLowerCase())
-          ) 
+        ) 
         : [];
 
     const location = useLocation();
@@ -51,7 +49,6 @@ const Header = () => {
         fetchProducts();
     }, []);
 
-    // FIX: Only ONE single useEffect for debounce (Clean & Optimized)
     useEffect(() => {
         const timerId = setTimeout(() => {
             setDebouncedSearch(searchQuery);
@@ -136,7 +133,6 @@ const Header = () => {
                             <Images imgSrc={Logo} className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
                         </Link>
                     </div>
-                    
                     {/* DESKTOP SEARCH BAR */}
                     <div className="hidden md:flex flex-1 max-w-2xl justify-center relative" ref={searchRef}>
                         <form onSubmit={(e) => e.preventDefault()} className="relative w-full group z-50">
@@ -155,7 +151,6 @@ const Header = () => {
                                 </button>
                             </div>
                         </form>
-
                         {/* DESKTOP SEARCH DROPDOWN */}
                         <div className={`absolute top-[120%] left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.12)] z-50 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
                             <div className="max-h-[350px] w-full overflow-y-auto rounded-2xl p-2" data-lenis-prevent>
@@ -166,26 +161,29 @@ const Header = () => {
                                     </div>
                                 ) : searchResults.length > 0 ? (
                                     <div className="grid gap-1">
-                                        {searchResults.map((product) => (
-                                            <Link 
-                                                to={`/productinside`}
-                                                state={{ item: product }}
-                                                key={product.id} 
-                                                className="group flex items-center gap-x-4 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                                                onClick={handleProductClick}
-                                            >
-                                                <div className="relative overflow-hidden rounded-lg bg-gray-50 border border-gray-100 shrink-0">
-                                                    <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover group-hover:scale-110 transition-transform duration-500" />
-                                                </div>
-                                                <div className="flex-1">
-                                                    <h4 className="text-[14px] font-semibold text-gray-800 line-clamp-1 group-hover:text-black transition-colors">{product.title}</h4>
-                                                    <p className="text-[12px] text-gray-500 mt-0.5">{product.category}</p>
-                                                </div>
-                                                <div className="shrink-0 text-right">
-                                                    <p className="text-[14px] font-bold text-black">${product.price}</p>
-                                                </div>
-                                            </Link>
-                                        ))}
+                                        {searchResults.map((product) => {
+                                            const productSlug = product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                                            return (
+                                                <Link 
+                                                    to={`/product/${productSlug}`}
+                                                    state={{ item: product }}
+                                                    key={product.id} 
+                                                    className="group flex items-center gap-x-4 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                                                    onClick={handleProductClick}
+                                                >
+                                                    <div className="relative overflow-hidden rounded-lg bg-gray-50 border border-gray-100 shrink-0">
+                                                        <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover group-hover:scale-110 transition-transform duration-500" />
+                                                    </div>
+                                                    <div className="flex-1">
+                                                        <h4 className="text-[14px] font-semibold text-gray-800 line-clamp-1 group-hover:text-black transition-colors">{product.title}</h4>
+                                                        <p className="text-[12px] text-gray-500 mt-0.5">{product.category}</p>
+                                                    </div>
+                                                    <div className="shrink-0 text-right">
+                                                        <p className="text-[14px] font-bold text-black">${product.price}</p>
+                                                    </div>
+                                                </Link>
+                                            );
+                                        })}
                                     </div>
                                 ) : (
                                     <div className="py-10 text-center flex flex-col items-center justify-center">
@@ -197,7 +195,6 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
                         <div ref={userRef} className="relative hidden md:block">
                             <button 
@@ -226,7 +223,6 @@ const Header = () => {
                         </button>
                     </div>
                 </div>
-
                 {/* BOTTOM ROW (Desktop Nav) */}
                 <div className={`hidden md:flex items-center justify-between pb-4 px-4 lg:px-0 transition-all duration-300 ${isScrolled ? "hidden" : "block"}`}>
                     <div ref={categoryRef} className="relative z-40">
@@ -266,11 +262,9 @@ const Header = () => {
                     </nav>
                 </div>
             </Container>
-
             {/* MOBILE MENU */}
             <div className={`md:hidden fixed inset-0 bg-white/95 backdrop-blur-3xl transition-all duration-300 ease-in-out z-40 ${isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full pointer-events-none"}`}>
                 <div className="w-full h-dvh px-5 pt-[85px] pb-10 overflow-y-auto" data-lenis-prevent>
-                    
                     {/* MOBILE SEARCH BAR */}
                     <div className="relative w-full mb-8 z-50" ref={mobileSearchRef}>
                         <form onSubmit={(e) => e.preventDefault()}>
@@ -289,7 +283,6 @@ const Header = () => {
                                 </button>
                             </div>
                         </form>
-
                         {/* MOBILE SEARCH DROPDOWN */}
                         <div className={`absolute top-[110%] left-0 w-full bg-white border border-gray-100 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] z-60 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
                             <div className="max-h-[300px] w-full overflow-y-auto rounded-xl p-2" data-lenis-prevent>
@@ -300,23 +293,26 @@ const Header = () => {
                                     </div>
                                 ) : searchResults.length > 0 ? (
                                     <div className="grid gap-1">
-                                        {searchResults.map((product) => (
-                                            <Link 
-                                                to={`/productinside`}
-                                                state={{ item: product }}
-                                                key={product.id} 
-                                                className="group flex items-center gap-x-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                                                onClick={handleProductClick}
-                                            >
-                                                <div className="relative overflow-hidden rounded-md bg-gray-50 border border-gray-100 shrink-0">
-                                                    <img src={product.thumbnail} alt={product.title} className="w-10 h-10 object-cover" />
-                                                </div>
-                                                <div className="flex-1 overflow-hidden">
-                                                    <h4 className="text-[13px] font-semibold text-gray-800 truncate group-hover:text-black transition-colors">{product.title}</h4>
-                                                    <p className="text-[11px] text-gray-500 mt-0.5">${product.price}</p>
-                                                </div>
-                                            </Link>
-                                        ))}
+                                        {searchResults.map((product) => {
+                                            const productSlug = product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                                            return (
+                                                <Link 
+                                                    to={`/product/${productSlug}`}
+                                                    state={{ item: product }}
+                                                    key={product.id} 
+                                                    className="group flex items-center gap-x-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-300"
+                                                    onClick={handleProductClick}
+                                                >
+                                                    <div className="relative overflow-hidden rounded-md bg-gray-50 border border-gray-100 shrink-0">
+                                                        <img src={product.thumbnail} alt={product.title} className="w-10 h-10 object-cover" />
+                                                    </div>
+                                                    <div className="flex-1 overflow-hidden">
+                                                        <h4 className="text-[13px] font-semibold text-gray-800 truncate group-hover:text-black transition-colors">{product.title}</h4>
+                                                        <p className="text-[11px] text-gray-500 mt-0.5">${product.price}</p>
+                                                    </div>
+                                                </Link>
+                                            );
+                                        })}
                                     </div>
                                 ) : (
                                     <div className="py-6 text-center">
@@ -326,7 +322,6 @@ const Header = () => {
                             </div>
                         </div>
                     </div>
-
                     <nav className="flex flex-col space-y-4 mb-8 border-b border-gray-100 pb-8">
                         {navLinks.map((link, index) => (
                             <Link key={index} to={link.path} onClick={() => setIsMobileMenuOpen(false)} className={`text-xl font-bold transition-colors ${location.pathname === link.path ? "text-black" : "text-gray-400 hover:text-black"}`}>
