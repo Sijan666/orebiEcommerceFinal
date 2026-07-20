@@ -16,7 +16,7 @@ const Error = lazy(() => import('./components/pages/Error'));
 
 function App() {
   return (
-    <ReactLenis root options={{ lerp: 0.05, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: true }}>
+    <ReactLenis root options={{ lerp: 0.05, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: false, smoothTouch: false }}>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<RootLayouts />}>
