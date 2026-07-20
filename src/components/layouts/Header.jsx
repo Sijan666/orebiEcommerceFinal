@@ -59,7 +59,7 @@ const Header = () => {
                 {/* TOP ROW */}
                 <div className="flex items-center justify-between py-4 lg:py-5 gap-x-4 lg:gap-x-8">
                     <div className="shrink-0 z-50">
-                        <Link to="/" className="block transition-transform duration-300 hover:scale-105">
+                        <Link to="/" className="block transition-transform duration-300">
                             <Images imgSrc={Logo} className="h-7 lg:h-8 w-auto object-contain" />
                         </Link>
                     </div>
