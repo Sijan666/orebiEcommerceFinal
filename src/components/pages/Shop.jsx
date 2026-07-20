@@ -11,6 +11,10 @@ import axios from 'axios';
 const Shop = () => {
     const containerRef = useRef(null);
     const [allData, setAllData] = useState([]);
+    
+    // Notun Loading State
+    const [isLoading, setIsLoading] = useState(true); 
+
     // Pagination 
     const [currentPage, setCurrentPage] = useState(1);
     const [itemsPerPage, setItemsPerPage] = useState(12);
@@ -18,10 +22,13 @@ const Shop = () => {
     useEffect(() => {
         async function fetchAllDatas() {
             try {
+                setIsLoading(true);
                 const response = await axios.get("https://dummyjson.com/products?limit=100");
                 setAllData(response.data.products);
             } catch (error) {
                 console.error("data not found", error.message);
+            } finally {
+                setIsLoading(false);
             }
         }
         fetchAllDatas();
@@ -59,7 +66,7 @@ const Shop = () => {
     // MixItUp Logic
     useEffect(() => {
         let mixer;
-        if (containerRef.current && currentItems.length > 0) {
+        if (containerRef.current && currentItems.length > 0 && !isLoading) {
             mixer = mixitup(containerRef.current, {
                 animation: {
                     duration: 400,
@@ -71,7 +78,7 @@ const Shop = () => {
                 mixer.destroy();
             }
         };
-    }, [currentItems]);
+    }, [currentItems, isLoading]);
 
     const dummyCategories = ['catOne', 'catTwo', 'catThree', 'catFour', 'catFive'];
 
@@ -158,25 +165,35 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Product */}
+                    {/* Product & Loading State */}
                     <div className="pt-2 w-full" ref={containerRef}>
-                        <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8'>
-                            {currentItems.map((item, index) => {
-                                const filterClass = dummyCategories[index % dummyCategories.length];
-                                return (
-                                    <div key={item.id} className={`mix ${filterClass} w-full`}>
-                                        <Product
-                                            productImg={item.thumbnail}
-                                            badgeText={item.stock}
-                                            productTitle={item.title}
-                                            productPrice={item.price}
-                                        />
-                                    </div>
-                                );
-                            })}
-                        </div>
+                        {isLoading ? (
+                            <div className="flex justify-center items-center py-20 w-full">
+                                <div className="flex flex-col items-center gap-4">
+                                    <div className="w-10 h-10 border-4 border-[#262626] border-t-transparent rounded-full animate-spin"></div>
+                                    <h2 className="text-xl font-bold animate-pulse text-[#767676]">Loading Products...</h2>
+                                </div>
+                            </div>
+                        ) : (
+                            // Product Grid
+                            <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8'>
+                                {currentItems.map((item, index) => {
+                                    const filterClass = dummyCategories[index % dummyCategories.length];
+                                    return (
+                                        <div key={item.id} className={`mix ${filterClass} w-full`}>
+                                            <Product
+                                                productImg={item.thumbnail}
+                                                badgeText={item.stock}
+                                                productTitle={item.title}
+                                                productPrice={item.price}
+                                            />
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        )}
                         {/* Pagination */}
-                        {totalPages > 1 && (
+                        {!isLoading && totalPages > 1 && (
                             <div className="flex justify-center md:justify-end mt-12 md:mt-20 w-full overflow-hidden">
                                 <div className="flex items-center gap-x-1">
                                     <button
