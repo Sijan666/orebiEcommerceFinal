@@ -7,12 +7,13 @@ import { IoGrid } from "react-icons/io5";
 import { CiGrid2H } from "react-icons/ci";
 import Product from '../Product';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Shop = () => {
     const containerRef = useRef(null);
     const [allData, setAllData] = useState([]);
     
-    // Notun Loading State
+    // Loading State
     const [isLoading, setIsLoading] = useState(true); 
 
     // Pagination 
@@ -181,12 +182,14 @@ const Shop = () => {
                                     const filterClass = dummyCategories[index % dummyCategories.length];
                                     return (
                                         <div key={item.id} className={`mix ${filterClass} w-full`}>
-                                            <Product
-                                                productImg={item.thumbnail}
-                                                badgeText={item.stock}
-                                                productTitle={item.title}
-                                                productPrice={item.price}
-                                            />
+                                            <Link to={`/indiProduct`} state={{ item: item }} className="block h-full cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                                                <Product
+                                                    productImg={item.thumbnail}
+                                                    badgeText={item.stock}
+                                                    productTitle={item.title}
+                                                    productPrice={item.price}
+                                                />
+                                            </Link>
                                         </div>
                                     );
                                 })}
