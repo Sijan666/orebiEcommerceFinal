@@ -166,7 +166,7 @@ const Shop = () => {
                             </div>
                         </div>
                     </div>
-                    {/* Product & Loading State */}
+                    {/* Product Grid */}
                     <div className="pt-2 w-full" ref={containerRef}>
                         {isLoading ? (
                             <div className="flex justify-center items-center py-20 w-full">
@@ -176,13 +176,14 @@ const Shop = () => {
                                 </div>
                             </div>
                         ) : (
-                            // Product Grid
                             <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 lg:gap-8'>
                                 {currentItems.map((item, index) => {
                                     const filterClass = dummyCategories[index % dummyCategories.length];
+                                    // SEO friendly dynamic URL slug
+                                    const itemSlug = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
                                     return (
                                         <div key={item.id} className={`mix ${filterClass} w-full`}>
-                                            <Link to={`/indiProduct`} state={{ item: item }} className="block h-full cursor-pointer duration-300">
+                                            <Link to={`/product/${itemSlug}`} state={{ item: item }} className="block h-full cursor-pointer duration-300">
                                                 <Product
                                                     productImg={item.thumbnail}
                                                     badgeText={item.stock}
