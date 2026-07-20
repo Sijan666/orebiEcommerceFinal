@@ -182,7 +182,7 @@ const Shop = () => {
                                     const filterClass = dummyCategories[index % dummyCategories.length];
                                     return (
                                         <div key={item.id} className={`mix ${filterClass} w-full`}>
-                                            <Link to={`/indiProduct`} state={{ item: item }} className="block h-full cursor-pointer hover:shadow-lg transition-shadow duration-300">
+                                            <Link to={`/indiProduct`} state={{ item: item }} className="block h-full cursor-pointer duration-300">
                                                 <Product
                                                     productImg={item.thumbnail}
                                                     badgeText={item.stock}
