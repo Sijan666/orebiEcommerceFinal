@@ -1,27 +1,34 @@
+import React, { Suspense, lazy } from 'react';
+import { Helmet } from 'react-helmet-async';
+
 import Banner from "../layouts/Banner"
 import AfterBanner from "../layouts/AfterBanner"
-import Ads from "../layouts/Ads"
-import NewArrivals from "../layouts/NewArrivals"
-import Bestseller from "../layouts/Bestseller"
-import ShopBanner from "../layouts/ShopBanner"
-import Specialoffer from "../layouts/Specialoffer"
-// import Mixit from "../layouts/Mixit"
+import StudioLoader from '../Loader';
 
-
+const Ads = lazy(() => import("../layouts/Ads"));
+const NewArrivals = lazy(() => import("../layouts/NewArrivals"));
+const Bestseller = lazy(() => import("../layouts/Bestseller"));
+const ShopBanner = lazy(() => import("../layouts/ShopBanner"));
+const Specialoffer = lazy(() => import("../layouts/Specialoffer"));
 
 const Home = () => {
     return (
         <>
-        <Banner/>
-        <AfterBanner/>
-        <Ads/>
-        <NewArrivals/>
-        <Bestseller/>
-        <ShopBanner/>
-        <Specialoffer/>
-        {/* <Mixit/> */}
+            <Helmet>
+                <title>Orebi | Best E-Commerce Store</title>
+                <meta name="description" content="Shop the latest furniture and premium items at Orebi." />
+            </Helmet>
+            <Banner />
+            <AfterBanner />
+            <Suspense fallback={<StudioLoader/>}>
+                <Ads />
+                <NewArrivals />
+                <Bestseller />
+                <ShopBanner />
+                <Specialoffer />
+            </Suspense>
         </>
     )
 }
 
-export default Home
+export default Home;
