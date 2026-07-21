@@ -173,14 +173,14 @@ const IndividualProduct = () => {
                             <div className="flex items-center justify-between border border-gray-200 rounded-full h-[54px] w-full sm:w-[150px] px-2 bg-white">
                                 <button
                                     onClick={() => setQuantity(prev => prev > 1 ? prev - 1 : 1)}
-                                    className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                                    className="cursor-pointer w-10 h-full flex items-center justify-center text-gray-500 hover:text-black transition-colors"
                                 >
                                     <FiMinus className="text-lg" />
                                 </button>
                                 <span className="font-bold text-[16px] text-black">{quantity}</span>
                                 <button
                                     onClick={() => setQuantity(prev => prev < (product.stock || 10) ? prev + 1 : prev)}
-                                    className="w-10 h-full flex items-center justify-center text-gray-500 hover:text-black transition-colors"
+                                    className="cursor-pointer w-10 h-full flex items-center justify-center text-gray-500 hover:text-black transition-colors"
                                 >
                                     <FiPlus className="text-lg" />
                                 </button>
