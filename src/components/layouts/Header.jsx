@@ -6,6 +6,8 @@ import Container from "../Container";
 import Images from "../Images";
 import Logo from '../../assets/Logo.png';
 import axios from "axios";
+// Redux import
+import { useSelector } from "react-redux";
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -35,8 +37,12 @@ const Header = () => {
     const userRef = useRef();
     const searchRef = useRef(); 
     const mobileSearchRef = useRef();
+    // REDUX CART LOGIC
+    const cartItems = useSelector((state) => state.cart.cartItems);
+    const totalCartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
-    // Fetch Initial Data
+
+    // Fetch Initial Data for search
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -64,7 +70,6 @@ const Header = () => {
         return () => window.removeEventListener("scroll", handleScroll);
     }, []);
 
-    // Lock body scroll when mobile menu is open
     useEffect(() => {
         if (isMobileMenuOpen) {
             document.body.style.overflow = 'hidden';
@@ -196,6 +201,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
+                        {/* USER MENU */}
                         <div ref={userRef} className="relative hidden md:block">
                             <button 
                                 onClick={() => setShowUserMenu(!showUserMenu)}
@@ -211,10 +217,16 @@ const Header = () => {
                                 </ul>
                             </div>
                         </div>
+                        {/* CART ICON */}
                         <Link to={'/cart'} className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
-                            <span className="absolute top-0 md:top-1 right-0 md:right-1 bg-red-500 text-white text-[9px] md:text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white">2</span>
+                            {totalCartQuantity > 0 && (
+                                <span className="absolute top-0 md:top-1 right-0 md:right-1 bg-red-500 text-white text-[9px] md:text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white">
+                                    {totalCartQuantity}
+                                </span>
+                            )}
                         </Link>
+                        {/* MOBILE MENU TOGGLE BUTTON */}
                         <button 
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-2 text-gray-800 focus:outline-none ml-1 hover:bg-gray-100 rounded-full transition-colors"
