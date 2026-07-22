@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FiCheck, FiShoppingBag, FiCopy, FiMapPin } from "react-icons/fi";
+import { FiCheck, FiShoppingBag, FiCopy, FiMapPin, FiFileText } from "react-icons/fi";
 
 const Success = () => {
     const location = useLocation();
@@ -9,6 +9,9 @@ const Success = () => {
     const paymentMethod = location.state?.paymentMethod || 'card'; 
     const courier = location.state?.courier || 'Pathao Express';
     const city = location.state?.city || 'Dhaka';
+    const purchasedItems = location.state?.purchasedItems || [];
+    const amountPaid = location.state?.amountPaid || 0;
+    const buyerDetails = location.state?.buyerDetails || {}; 
 
     const [orderNumber, setOrderNumber] = useState("");
     const [orderDate, setOrderDate] = useState("");
@@ -21,9 +24,7 @@ const Success = () => {
         
         const today = new Date();
         const formattedDate = today.toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric'
+            year: 'numeric', month: 'short', day: 'numeric'
         });
         setOrderDate(formattedDate);
 
@@ -38,7 +39,6 @@ const Success = () => {
             };
             localStorage.setItem("premiumOrders", JSON.stringify(existingOrders));
         }
-
     }, [courier, city]);
 
     const handleCopy = () => {
@@ -47,71 +47,70 @@ const Success = () => {
         setTimeout(() => setCopied(false), 2000);
     };
 
+    const handleViewReceipt = () => {
+        navigate('/receipt', { 
+            state: { 
+                orderNumber, 
+                orderDate, 
+                paymentMethod, 
+                courier, 
+                city, 
+                purchasedItems, 
+                amountPaid, 
+                buyerDetails 
+            } 
+        });
+    };
+
     return (
         <div className="bg-[#fafafa] min-h-[80vh] flex items-center justify-center px-4 font-sans py-12">
-            <div className="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border border-gray-100 max-w-2xl w-full text-center relative overflow-hidden animate-[fade-in_0.5s_ease-out]">
-                <div className="absolute top-0 left-0 w-full h-1 bg-black"></div>
-                <div className="mx-auto w-16 h-16 bg-black rounded-full flex items-center justify-center mb-6 shadow-md">
-                    <FiCheck className="text-white text-3xl font-bold" />
+            <div className="bg-white p-8 sm:p-12 rounded-2xl shadow-2xl border border-gray-100 max-w-xl w-full text-center relative overflow-hidden animate-[fade-in_0.5s_ease-out]">
+                <div className="absolute top-0 left-0 w-full h-1.5 bg-black"></div>
+                {/* Success Icon */}
+                <div className="mx-auto w-20 h-20 bg-black rounded-full flex items-center justify-center mb-6 shadow-[0_8px_30px_rgb(0,0,0,0.12)]">
+                    <FiCheck className="text-white text-4xl font-bold" />
                 </div>
-                <h1 className="text-3xl font-semibold text-gray-900 mb-2 tracking-tight">Order Confirmed</h1>
-                <p className="text-gray-500 text-sm mb-10 leading-relaxed px-4">
+                {/* Heading & Text */}
+                <h1 className="text-3xl sm:text-4xl font-black text-gray-900 mb-3 tracking-tight">Order Confirmed!</h1>
+                <p className="text-gray-500 text-sm sm:text-base mb-10 leading-relaxed px-4 max-w-md mx-auto">
                     {paymentMethod === 'cod' 
-                        ? "Thank you for your purchase! We've received your order. Please keep the exact amount ready upon delivery." 
-                        : "Thank you for your purchase! We've received your order and will send an email with shipping details shortly."}
+                        ? "Thank you for your purchase. We've received your order. Please keep the cash ready upon delivery." 
+                        : "Thank you for your purchase. We've received your order and will send a shipping update shortly."}
                 </p>
-                <div className="bg-[#f8f9fa] rounded-xl p-5 mb-4 text-left border border-gray-100">
-                    <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Token / Order No.</span>
-                        <div 
-                            onClick={handleCopy}
-                            className="flex items-center gap-2 cursor-pointer group"
-                            title="Copy Order Number"
-                        >
-                            <span className="text-sm font-bold text-black border-b border-transparent group-hover:border-black transition-colors">
-                                {orderNumber}
-                            </span>
-                            {copied ? (
-                                <span className="text-[10px] bg-black text-white px-1.5 py-0.5 rounded">Copied!</span>
-                            ) : (
-                                <FiCopy className="text-gray-400 group-hover:text-black transition-colors" />
-                            )}
-                        </div>
-                    </div>
-                    <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Selected Courier</span>
-                        <span className="text-sm font-bold text-gray-900">{courier}</span>
-                    </div>
-                    <div className="flex justify-between items-center mb-4 border-b border-gray-200 pb-3">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Date</span>
-                        <span className="text-sm font-medium text-gray-900">{orderDate}</span>
-                    </div>
-                    <div className="flex justify-between items-center">
-                        <span className="text-xs text-gray-500 uppercase tracking-wider font-semibold">Payment Status</span>
-                        {paymentMethod === 'cod' ? (
-                            <span className="text-xs font-bold text-amber-700 bg-amber-100 px-2.5 py-1 rounded-md">Pending (COD)</span>
+                {/* Order Info */}
+                <div className="bg-[#f8f9fa] rounded-2xl border border-gray-100 p-6 mb-8 flex flex-col items-center justify-center gap-2">
+                    <p className="text-[11px] text-gray-400 font-bold uppercase tracking-widest">Your Order Number</p>
+                    <div 
+                        onClick={handleCopy} 
+                        className="flex items-center justify-center gap-3 cursor-pointer group bg-white px-6 py-3 rounded-xl border border-gray-200 shadow-sm hover:border-black transition-all duration-300"
+                        title="Click to copy"
+                    >
+                        <p className="text-xl sm:text-2xl font-black text-black tracking-wider">{orderNumber}</p>
+                        {copied ? (
+                            <span className="text-[10px] font-bold bg-black text-white px-2 py-1 rounded">Copied!</span>
                         ) : (
-                            <span className="text-xs font-bold text-green-700 bg-green-100 px-2.5 py-1 rounded-md">Successful</span>
+                            <FiCopy className="text-gray-400 group-hover:text-black transition-colors" />
                         )}
                     </div>
+                    <p className="text-xs text-gray-400 mt-2">* Save this token to track your delivery status later.</p>
                 </div>
-                <p className="text-xs text-gray-400 mb-8 px-4">
-                    * Please save your Token / Order No. to track your delivery status later.
-                </p>
-                <div className="flex flex-col sm:flex-row gap-3">
-                    <Link 
-                        to="/shop" 
-                        className="cursor-pointer flex-1 flex items-center justify-center gap-2 bg-white text-gray-900 border border-gray-200 px-6 py-3.5 rounded-xl text-sm font-medium hover:bg-gray-50 transition-all active:scale-[0.98]"
-                    >
-                        <FiShoppingBag className="text-lg" /> 
-                        Continue Shopping
-                    </Link>
+                {/* View Receipt Button */}
+                <div className="mb-10">
                     <button 
-                        onClick={() => navigate('/track', { state: { orderId: orderNumber } })}
-                        className="cursor-pointer flex-1 flex items-center justify-center gap-2 bg-black text-white px-6 py-3.5 rounded-xl text-sm font-medium hover:bg-gray-900 transition-all shadow-sm active:scale-[0.98]"
+                        onClick={handleViewReceipt} 
+                        className="cursor-pointer group inline-flex items-center justify-center gap-2 text-sm font-bold uppercase tracking-widest text-black border-b-2 border-black pb-1 hover:text-gray-500 hover:border-gray-500 transition-all"
                     >
-                        <FiMapPin className="text-lg" />
-                        Track Order
+                        <FiFileText className="text-lg group-hover:-translate-y-0.5 transition-transform" />
+                        View Full Receipt & Details
+                    </button>
+                </div>
+                {/* Action Buttons */}
+                <div className="flex flex-col sm:flex-row gap-3 mt-6 pt-8 border-t border-gray-100">
+                    <Link to="/shop" className="cursor-pointer flex-1 flex items-center justify-center gap-2 bg-white text-gray-900 border border-gray-200 px-6 py-4 rounded-xl text-sm font-bold tracking-wide hover:bg-gray-50 hover:border-black transition-all active:scale-[0.98]">
+                        <FiShoppingBag className="text-lg" /> Continue Shopping
+                    </Link>
+                    <button onClick={() => navigate('/track', { state: { orderId: orderNumber } })} className="cursor-pointer flex-1 flex items-center justify-center gap-2 bg-black text-white px-6 py-4 rounded-xl text-sm font-bold tracking-wide hover:bg-gray-900 hover:shadow-lg transition-all active:scale-[0.98]">
+                        <FiMapPin className="text-lg" /> Track Order
                     </button>
                 </div>
             </div>
