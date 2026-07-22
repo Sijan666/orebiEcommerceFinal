@@ -96,8 +96,20 @@ const Checkout = () => {
         if (validateForm()) {
             setIsProcessing(true);
             setTimeout(() => {
+                const purchasedItems = [...cartItems];
+                const amountPaid = finalTotal;
+
                 dispatch(clearCart());
-                navigate("/success", { state: { paymentMethod: paymentMethod, courier: courier, city: formData.city } });
+                navigate("/success", { 
+                    state: { 
+                        paymentMethod: paymentMethod, 
+                        courier: courier, 
+                        city: formData.city,
+                        purchasedItems: purchasedItems, 
+                        amountPaid: amountPaid,
+                        buyerDetails: formData // ADDED: Buyer er full details pass kora hocche
+                    } 
+                });
             }, 1800);
         }
     };
@@ -166,7 +178,6 @@ const Checkout = () => {
                                     </label>
                                 </div>
                             </section>
-                            {/* COURIER SELECTION  */}
                             <section>
                                 <h2 className="text-lg font-medium text-gray-900 mb-5">Select Courier Service</h2>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
@@ -266,7 +277,7 @@ const Checkout = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <FiLock className="text-lg opacity-80 transition-transform duration-500 group-hover:opacity-100" />
+                                                <FiLock className="text-lg opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100" />
                                                 <span>Pay ${finalTotal.toFixed(2)}</span>
                                             </>
                                         )}
