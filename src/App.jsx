@@ -4,6 +4,9 @@ import { Routes, Route } from 'react-router-dom';
 import ReactLenis from 'lenis/react';
 import Loader from './components/Loader';
 import CartPage from './components/pages/Cart';
+import Success from './components/pages/Success';
+import Checkout from './components/pages/Checkout';
+import TrackOrder from './components/pages/TrackOrder';
 
 const RootLayouts = lazy(() => import('./components/layouts/RootLayouts'));
 const Home = lazy(() => import('./components/pages/Home'));
@@ -31,6 +34,9 @@ function App() {
             <Route path="/productinside" element={<ProductInside />} />
             <Route path="/product/:slug" element={<IndividualProduct />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/checkout" element={<Checkout />} />
+            <Route path="/success" element={<Success />} />
+            <Route path="/track" element={<TrackOrder />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
