@@ -19,6 +19,7 @@ const ProductInside = lazy(() => import('./components/pages/ProductInside'));
 const IndividualProduct = lazy(() => import('./components/pages/IndividualProduct'));
 const Error = lazy(() => import('./components/pages/Error'));
 const CategoryPage = lazy(() => import('./components/pages/CategoryPage'));
+const Receipt = lazy(() => import('./components/pages/Receipt'));
 
 function App() {
   return (
@@ -39,6 +40,7 @@ function App() {
             <Route path="/success" element={<Success />} />
             <Route path="/track" element={<TrackOrder />} />
             <Route path="/category/:categoryName" element={<CategoryPage />} />
+            <Route path="/receipt" element={<Receipt />} />
           </Route>
           <Route path="*" element={<Error />} />
         </Routes>
