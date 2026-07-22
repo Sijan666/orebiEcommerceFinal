@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { FiSearch, FiUser, FiShoppingCart, FiMenu, FiX, FiChevronDown, FiLoader } from "react-icons/fi";
+import { FiSearch, FiUser, FiShoppingCart, FiMenu, FiX, FiChevronDown, FiLoader, FiMapPin } from "react-icons/fi";
 import { BiCategory } from "react-icons/bi";
 import Container from "../Container";
 import Images from "../Images";
@@ -100,10 +100,17 @@ const Header = () => {
     ];
 
     const categories = [
-        "Accessories", "Furniture", "Electronics", "Clothes", "Bags", "Home Appliances"
+        "Smartphones", 
+        "Laptops", 
+        "Furniture", 
+        "Mens Shirts", 
+        "Womens Dresses", 
+        "Womens Bags",
+        "Mens Watches",
+        "Sunglasses"
     ];
 
-    // Search handle function
+    // Search function
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchQuery(value);
@@ -217,6 +224,10 @@ const Header = () => {
                                 </ul>
                             </div>
                         </div>
+                        {/* TRACK ORDER ICON */}
+                        <Link to="/track" title="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
+                            <FiMapPin className="text-lg md:text-xl" />
+                        </Link>
                         {/* CART ICON */}
                         <Link to={'/cart'} className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
