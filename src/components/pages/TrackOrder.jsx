@@ -69,7 +69,7 @@ const TrackOrder = () => {
                         Enter your tracking token below to get real-time updates on your package.
                     </p>
                 </div>
-                <div className="max-w-2xl mx-auto mb-12 transform transition-all hover:-translate-y-1 hover:shadow-lg rounded-2xl bg-white p-2 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
+                <div className="max-w-2xl mx-auto mb-12 transform transition-all rounded-2xl bg-white p-2 border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.04)]">
                     <form onSubmit={handleTrackOrder} className="flex flex-col sm:flex-row gap-2">
                         <div className="relative flex-1 flex items-center">
                             <FiSearch className="absolute left-5 text-gray-400 text-lg" />
