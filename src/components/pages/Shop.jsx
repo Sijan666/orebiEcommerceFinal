@@ -24,7 +24,7 @@ const Shop = () => {
         async function fetchAllDatas() {
             try {
                 setIsLoading(true);
-                const response = await axios.get("https://dummyjson.com/products?limit=100");
+                const response = await axios.get("https://dummyjson.com/products?limit=200");
                 setAllData(response.data.products);
             } catch (error) {
                 console.error("data not found", error.message);
