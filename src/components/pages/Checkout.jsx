@@ -171,7 +171,7 @@ const Checkout = () => {
                                 <h2 className="text-lg font-medium text-gray-900 mb-5">Select Courier Service</h2>
                                 <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                                     {courierOptions.map(option => (
-                                        <label key={option} className={`relative flex items-center justify-center cursor-pointer rounded-lg border p-4 transition-all ${courier === option ? 'border-black bg-black text-white shadow-md scale-[1.02]' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
+                                        <label key={option} className={`relative flex items-center justify-center cursor-pointer rounded-lg border p-4 transition-all ${courier === option ? 'border-black bg-black text-white shadow-md ' : 'border-gray-200 bg-white hover:border-gray-300 text-gray-700'}`}>
                                             <input type="radio" name="courier" value={option} checked={courier === option} onChange={() => setCourier(option)} className="sr-only cursor-pointer" />
                                             <span className="text-xs font-semibold text-center">{option}</span>
                                         </label>
@@ -266,7 +266,7 @@ const Checkout = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <FiLock className="text-lg opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100" />
+                                                <FiLock className="text-lg opacity-80 transition-transform duration-500 group-hover:opacity-100" />
                                                 <span>Pay ${finalTotal.toFixed(2)}</span>
                                             </>
                                         )}
