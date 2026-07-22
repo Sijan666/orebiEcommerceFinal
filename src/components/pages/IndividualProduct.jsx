@@ -99,7 +99,6 @@ const IndividualProduct = () => {
             </div>
             <Container className="px-4 lg:px-0">
                 <div className="flex flex-col lg:flex-row gap-10 lg:gap-16">
-                    
                     {/* LEFT SIDE */}
                     <div className="w-full lg:w-1/2 flex flex-col-reverse md:flex-row gap-4 lg:gap-5">
                         {/* Thumbnails */}
