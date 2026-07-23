@@ -142,7 +142,7 @@ const Header = () => {
                 <div className="flex items-center justify-between py-3 md:py-4 lg:py-5 gap-x-4 lg:gap-x-8 px-4 lg:px-0">
                     <div className="shrink-0 z-50">
                         <Link to="/" className="block transition-transform duration-300" aria-label="Go to Home">
-                            <Images imgSrc={Logo} alt="Orebi Logo" className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
+                            <Images imgSrc={Logo} alt="Orebi Logo" className="h-6 md:h-7 lg:h-8 w-auto object-contain" width="120" height="32" />
                         </Link>
                     </div>
                     {/* search bar */}
@@ -185,7 +185,7 @@ const Header = () => {
                                                     onClick={handleProductClick}
                                                 >
                                                     <div className="relative overflow-hidden rounded-lg bg-gray-50 border border-gray-100 shrink-0">
-                                                        <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover group-hover:scale-110 transition-transform duration-500" />
+                                                        <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover group-hover:scale-110 transition-transform duration-500" width="48" height="48" />
                                                     </div>
                                                     <div className="flex-1">
                                                         <h4 className="text-[14px] font-semibold text-gray-800 line-clamp-1 group-hover:text-black transition-colors">{product.title}</h4>
@@ -331,7 +331,7 @@ const Header = () => {
                                                     onClick={handleProductClick}
                                                 >
                                                     <div className="relative overflow-hidden rounded-md bg-gray-50 border border-gray-100 shrink-0">
-                                                        <img src={product.thumbnail} alt={product.title} className="w-10 h-10 object-cover" />
+                                                        <img src={product.thumbnail} alt={product.title} className="w-10 h-10 object-cover" width="40" height="40" />
                                                     </div>
                                                     <div className="flex-1 overflow-hidden">
                                                         <h4 className="text-[13px] font-semibold text-gray-800 truncate group-hover:text-black transition-colors">{product.title}</h4>
