@@ -28,7 +28,7 @@ const Banner = () => {
                 className="w-full h-full"
             >
                 <SwiperSlide>
-                    <Link to={'/productinside'} className="block w-full" aria-label="View introductory offer">
+                    <Link to={'/shop'} className="block w-full" aria-label="View introductory offer">
                         <Images 
                             imgSrc={intro} 
                             alt="Amazon Prime Home Services Offer" 
