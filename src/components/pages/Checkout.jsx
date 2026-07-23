@@ -277,7 +277,6 @@ const Checkout = () => {
                                             </>
                                         ) : (
                                             <>
-                                                <FiLock className="text-lg opacity-80 transition-transform duration-500 group-hover:scale-110 group-hover:opacity-100" />
                                                 <span>Pay ${finalTotal.toFixed(2)}</span>
                                             </>
                                         )}
