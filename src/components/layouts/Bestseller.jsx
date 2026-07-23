@@ -37,7 +37,6 @@ const Bestseller = () => {
                 <h3 className="text-[26px] md:text-[32px] lg:text-[39px] text-[#262626] font-bold block pb-5 lg:pb-[30px] px-3 lg:px-0">
                     Our Bestsellers
                 </h3>
-                
                 {isLoading ? (
                     <div className="flex justify-center items-center py-10 w-full">
                         <div className="w-8 h-8 border-4 border-[#262626] border-t-transparent rounded-full animate-spin"></div>
