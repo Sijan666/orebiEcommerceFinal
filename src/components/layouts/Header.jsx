@@ -8,6 +8,7 @@ import Logo from '../../assets/Logo.png';
 import axios from "axios";
 // Redux import
 import { useSelector } from "react-redux";
+import { useLenis } from 'lenis/react';
 
 const Header = () => {
     const [isScrolled, setIsScrolled] = useState(false);
@@ -30,17 +31,18 @@ const Header = () => {
         : [];
 
     const location = useLocation();
-    // eslint-disable-next-line no-unused-vars
     const navigate = useNavigate();
     
     const categoryRef = useRef();
     const userRef = useRef();
     const searchRef = useRef(); 
     const mobileSearchRef = useRef();
+    
     // redux
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalCartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
+    const lenis = useLenis();
 
     // fetch data for search
     useEffect(() => {
@@ -85,12 +87,18 @@ const Header = () => {
         const handleClickOutside = (event) => {
             if (categoryRef.current && !categoryRef.current.contains(event.target)) setShowCategory(false);
             if (userRef.current && !userRef.current.contains(event.target)) setShowUserMenu(false);
-            if (searchRef.current && !searchRef.current.contains(event.target)) setShowSearchDropdown(false);
-            if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target)) setShowSearchDropdown(false);
+            if (searchRef.current && !searchRef.current.contains(event.target)) {
+                setShowSearchDropdown(false);
+                lenis?.start();
+            }
+            if (mobileSearchRef.current && !mobileSearchRef.current.contains(event.target)) {
+                setShowSearchDropdown(false);
+                lenis?.start();
+            }
         };
         document.addEventListener("mousedown", handleClickOutside);
         return () => document.removeEventListener("mousedown", handleClickOutside);
-    }, []);
+    }, [lenis]);
 
     const navLinks = [
         { name: "Home", path: "/" },
@@ -110,7 +118,6 @@ const Header = () => {
         "Sunglasses"
     ];
 
-    // search
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchQuery(value);
@@ -121,10 +128,13 @@ const Header = () => {
         }
     };
 
-    const handleProductClick = () => {
+    const handleProductClick = (product, productSlug) => {
+        navigate(`/product/${productSlug}`, { state: { item: product } });
         setShowSearchDropdown(false);
         setSearchQuery("");
+        setDebouncedSearch(""); 
         setIsMobileMenuOpen(false);
+        lenis?.start();
     };
 
     return (
@@ -166,7 +176,12 @@ const Header = () => {
                         </form>
                         {/* search dropdown */}
                         <div className={`absolute top-[120%] left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.12)] z-50 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
-                            <div className="max-h-[350px] w-full overflow-y-auto rounded-2xl p-2" data-lenis-prevent>
+                            <div 
+                                className="max-h-[350px] w-full overflow-y-auto rounded-2xl p-2" 
+                                data-lenis-prevent
+                                onMouseEnter={() => lenis?.stop()}
+                                onMouseLeave={() => lenis?.start()}
+                            >
                                 {isSearching ? (
                                     <div className="py-10 flex flex-col items-center justify-center gap-2">
                                         <div className="w-6 h-6 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
@@ -177,12 +192,13 @@ const Header = () => {
                                         {searchResults.map((product) => {
                                             const productSlug = product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
                                             return (
-                                                <Link 
-                                                    to={`/product/${productSlug}`}
-                                                    state={{ item: product }}
+                                                <div 
                                                     key={product.id} 
-                                                    className="group flex items-center gap-x-4 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                                                    onClick={handleProductClick}
+                                                    className="group flex items-center gap-x-4 px-4 py-2.5 rounded-xl hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                                                    onMouseDown={(e) => {
+                                                        e.preventDefault(); 
+                                                        handleProductClick(product, productSlug);
+                                                    }}
                                                 >
                                                     <div className="relative overflow-hidden rounded-lg bg-gray-50 border border-gray-100 shrink-0">
                                                         <img src={product.thumbnail} alt={product.title} className="w-12 h-12 object-cover group-hover:scale-110 transition-transform duration-500" width="48" height="48" />
@@ -194,7 +210,7 @@ const Header = () => {
                                                     <div className="shrink-0 text-right">
                                                         <p className="text-[14px] font-bold text-black">${product.price}</p>
                                                     </div>
-                                                </Link>
+                                                </div>
                                             );
                                         })}
                                     </div>
@@ -209,7 +225,6 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
-                        {/* user menu */}
                         <div ref={userRef} className="relative hidden md:block">
                             <button 
                                 aria-label="User Menu"
@@ -226,11 +241,9 @@ const Header = () => {
                                 </ul>
                             </div>
                         </div>
-                        {/* track order */}
                         <Link to="/track" title="Track Order" aria-label="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiMapPin className="text-lg md:text-xl" />
                         </Link>
-                        {/* cart */}
                         <Link to={'/cart'} aria-label="Shopping Cart" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
                             {totalCartQuantity > 0 && (
@@ -239,7 +252,6 @@ const Header = () => {
                                 </span>
                             )}
                         </Link>
-                        {/* mobile menu */}
                         <button 
                             aria-label="Toggle Mobile Menu"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -312,7 +324,12 @@ const Header = () => {
                         </form>
                         {/* mobile search dropdown */}
                         <div className={`absolute top-[110%] left-0 w-full bg-white border border-gray-100 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] z-60 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
-                            <div className="max-h-[300px] w-full overflow-y-auto rounded-xl p-2" data-lenis-prevent>
+                            <div 
+                                className="max-h-[300px] w-full overflow-y-auto rounded-xl p-2" 
+                                data-lenis-prevent
+                                onMouseEnter={() => lenis?.stop()}
+                                onMouseLeave={() => lenis?.start()}
+                            >
                                 {isSearching ? (
                                     <div className="py-8 flex flex-col items-center justify-center gap-2">
                                         <div className="w-5 h-5 border-2 border-black border-t-transparent rounded-full animate-spin"></div>
@@ -323,12 +340,13 @@ const Header = () => {
                                         {searchResults.map((product) => {
                                             const productSlug = product.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
                                             return (
-                                                <Link 
-                                                    to={`/product/${productSlug}`}
-                                                    state={{ item: product }}
+                                                <div 
                                                     key={product.id} 
-                                                    className="group flex items-center gap-x-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-300"
-                                                    onClick={handleProductClick}
+                                                    className="group flex items-center gap-x-3 px-3 py-2 rounded-xl hover:bg-gray-50 transition-all duration-300 cursor-pointer"
+                                                    onMouseDown={(e) => {
+                                                        e.preventDefault(); 
+                                                        handleProductClick(product, productSlug);
+                                                    }}
                                                 >
                                                     <div className="relative overflow-hidden rounded-md bg-gray-50 border border-gray-100 shrink-0">
                                                         <img src={product.thumbnail} alt={product.title} className="w-10 h-10 object-cover" width="40" height="40" />
@@ -337,7 +355,7 @@ const Header = () => {
                                                         <h4 className="text-[13px] font-semibold text-gray-800 truncate group-hover:text-black transition-colors">{product.title}</h4>
                                                         <p className="text-[11px] text-gray-500 mt-0.5">${product.price}</p>
                                                     </div>
-                                                </Link>
+                                                </div>
                                             );
                                         })}
                                     </div>
