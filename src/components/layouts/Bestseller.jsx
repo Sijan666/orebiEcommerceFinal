@@ -2,19 +2,30 @@ import Container from "../Container";
 import Product from "../Product";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "slick-carousel/slick/slick.css";
-import "slick-carousel/slick/slick-theme.css";
+import { Link } from "react-router-dom";
+
+// Swiper JS imports
+import { Swiper, SwiperSlide } from 'swiper/react';
+import { Navigation, Autoplay } from 'swiper/modules';
+
+// Swiper CSS
+import 'swiper/css';
+import 'swiper/css/navigation';
 
 const Bestseller = () => {
     let [allData, setAllData] = useState([]);
+    const [isLoading, setIsLoading] = useState(true);
 
-    useEffect(()=>{
+    useEffect(() => {
         async function allDatas() {
             try {
-                const response = await axios.get("https://dummyjson.com/products")
-                setAllData(response.data.products)
+                setIsLoading(true);
+                const response = await axios.get("https://dummyjson.com/products?limit=8&skip=30");
+                setAllData(response.data.products);
             } catch (error) {
-                console.error('data not found' , error.message)
+                console.error('data not found', error.message);
+            } finally {
+                setIsLoading(false);
             }
         }
         allDatas();
@@ -26,18 +37,68 @@ const Bestseller = () => {
                 <h3 className="text-[26px] md:text-[32px] lg:text-[39px] text-[#262626] font-bold block pb-5 lg:pb-[30px] px-3 lg:px-0">
                     Our Bestsellers
                 </h3>
-                <div className='grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5 lg:gap-8 px-3 lg:px-0'>
-                    {allData.slice(0,4).map((item)=>(
-                    <div key={item.id} className="w-full">
-                        <Product
-                        productImg={item.thumbnail}
-                        badgeText={item.stock}
-                        productTitle={item.title}
-                        productPrice={item.price}
-                        />
+                
+                {isLoading ? (
+                    <div className="flex justify-center items-center py-10 w-full">
+                        <div className="w-8 h-8 border-4 border-[#262626] border-t-transparent rounded-full animate-spin"></div>
                     </div>
-                    ))} 
-                </div>
+                ) : (
+                    <div className="relative px-3 lg:px-0 lg:-mx-2"> 
+                        <Swiper
+                            modules={[Navigation, Autoplay]}
+                            spaceBetween={15}
+                            slidesPerView={1}
+                            navigation={{
+                                nextEl: '.bestseller-next',
+                                prevEl: '.bestseller-prev',
+                            }}
+                            autoplay={{
+                                delay: 3500,
+                                disableOnInteraction: false,
+                            }}
+                            breakpoints={{
+                                480: { slidesPerView: 2, spaceBetween: 20 },
+                                768: { slidesPerView: 3, spaceBetween: 20 },
+                                1024: { slidesPerView: 4, spaceBetween: 30 },
+                            }}
+                            className="w-full pb-5"
+                        >
+                            {allData.map((item) => {
+                                const itemSlug = item.title.toLowerCase().replace(/[^a-z0-9]+/g, '-').replace(/(^-|-$)+/g, '');
+                                return (
+                                    <SwiperSlide key={item.id}>
+                                        <div className="w-full">
+                                            <Link 
+                                                to={`/product/${itemSlug}`} 
+                                                state={{ item: item }} 
+                                                className="block h-full cursor-pointer duration-300"
+                                            >
+                                                <Product
+                                                    productImg={item.thumbnail}
+                                                    badgeText={item.stock > 0 ? "Hot" : "Sold Out"}
+                                                    productTitle={item.title}
+                                                    productPrice={`$${item.price}`}
+                                                />
+                                            </Link>
+                                        </div>
+                                    </SwiperSlide>
+                                );
+                            })} 
+                        </Swiper>
+                        {/* --- Previous Arrow --- */}
+                        <button className="bestseller-prev absolute top-[40%] left-0 lg:-left-5 z-10 w-8 h-8 bg-gray-100 hover:bg-black text-black hover:text-white flex items-center justify-center rounded-full -translate-y-1/2 transition-all duration-300 shadow-md">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M15 19l-7-7 7-7"></path>
+                            </svg>
+                        </button>
+                        {/* --- Next Arrow --- */}
+                        <button className="bestseller-next absolute top-[40%] right-0 lg:-right-5 z-10 w-8 h-8 bg-gray-100 hover:bg-black text-black hover:text-white flex items-center justify-center rounded-full -translate-y-1/2 transition-all duration-300 shadow-md">
+                            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" d="M9 5l7 7-7 7"></path>
+                            </svg>
+                        </button>
+                    </div>
+                )}
             </Container>
         </div>
     );
