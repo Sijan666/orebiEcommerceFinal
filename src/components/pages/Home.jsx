@@ -15,7 +15,7 @@ const Home = () => {
     return (
         <>
             <Helmet>
-                <title>Orebi | Best E-Commerce Store</title>
+                <title>Orebi | E-Commerce Store</title>
                 <meta name="description" content="Shop the latest furniture and premium items at Orebi." />
             </Helmet>
             <Banner />
