@@ -23,7 +23,7 @@ const Receipt = lazy(() => import('./components/pages/Receipt'));
 
 function App() {
   return (
-    <ReactLenis root options={{ lerp: 0.05, wheelMultiplier: 0.8, smoothWheel: true, syncTouch: false, smoothTouch: false }}>
+    <ReactLenis root options={{ lerp: 0.1, duration: 1.5, smoothWheel: true }}>
       <Suspense fallback={<Loader />}>
         <Routes>
           <Route path="/" element={<RootLayouts />}>
