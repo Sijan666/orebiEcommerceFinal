@@ -1,107 +1,130 @@
-import Container from "../Container"
-import Flex from "../Flex"
-import Images from "../Images"
-import Logo from '../../assets/Logo.png'
-import { FaFacebookF } from "react-icons/fa";
-import { FaLinkedinIn } from "react-icons/fa";
-import { FaInstagram } from "react-icons/fa";
+import React from 'react';
+import Container from "../Container";
+import Images from "../Images";
+import Logo from '../../assets/Logo.png';
+import { FaFacebookF, FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
 const Footer = () => {
+  const currentYear = new Date().getFullYear();
+
+  const footerCategories = [
+      "Smartphones", 
+      "Laptops", 
+      "Furniture", 
+      "Mens Shirts", 
+      "Womens Dresses"
+  ];
+
   return (
-    <>
-      <div className="bg-[#F5F5F3] py-10 lg:py-[50px]">
-        <Container className={'px-4 lg:px-0'}>
-          <div className='flex flex-col sm:flex-row sm:flex-wrap lg:flex-nowrap justify-between items-start pb-10 lg:pb-[60px] gap-y-8 lg:gap-y-0'>
-            <div className="menu w-1/2 sm:w-[30%] lg:w-auto">
-              <p className="text-[#262626] text-base font-bold pb-4 lg:pb-[25px] uppercase">Menu</p>
-              <ul className="leading-[23px]">
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">
-                  <Link to={'/'}>
-                  Home
-                  </Link>
-                </li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">
-                  <Link to={'/shop'}>
-                  Shop
-                  </Link>
-                </li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">
-                  <Link to={'/about'}>
-                  About
-                  </Link>
-                </li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">
-                  <Link to={'/contact'}>
-                  Contact
-                  </Link>
-                </li>
-                <li className="text-[14px] text-[#6D6D6D]">
-                  <Link to={'/journal'}>
-                  Journal
-                  </Link>
-                </li>
-              </ul>
+    <footer className="bg-[#F5F5F3] pt-20 pb-8 mt-20 font-sans border-t border-gray-200">
+        <Container className="px-4 lg:px-0">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-gray-200">
+                {/* brand & contact */}
+                <div className="lg:col-span-4 flex flex-col gap-6 lg:pr-10">
+                    <Link to="/" className="inline-block">
+                        <Images imgSrc={Logo} className="w-28 object-contain" />
+                    </Link>
+                    <p className="text-sm text-[#767676] leading-relaxed mt-2">
+                        Orebi is a premium e-commerce platform offering the best products with top-tier customer service. Quality you can trust, delivered right to your doorstep.
+                    </p>
+                    <div className="flex flex-col gap-1 mt-4">
+                        <a href="tel:+8801700000000" className="text-[15px] text-[#262626] font-bold hover:text-[#767676] transition-colors">
+                            +880 17XX-XXXXXX
+                        </a>
+                        <a href="mailto:contact@orebistore.com" className="text-[15px] text-[#262626] font-bold hover:text-[#767676] transition-colors">
+                            contact@orebistore.com
+                        </a>
+                        <p className="text-sm text-[#767676] mt-2">
+                            Dhaka, Bangladesh
+                        </p>
+                    </div>
+                </div>
+                {/* quick links */}
+                <div className="lg:col-span-2 lg:ml-auto">
+                    <h4 className="text-[#262626] font-bold text-base uppercase tracking-widest mb-6">Explore</h4>
+                    <ul className="flex flex-col gap-4">
+                        {[
+                            { name: 'Home', path: '/' },
+                            { name: 'About Us', path: '/about' },
+                            { name: 'Our Shop', path: '/shop' },
+                            { name: 'Contact Us', path: '/contact' }
+                        ].map((item, index) => (
+                            <li key={index}>
+                                <Link 
+                                    to={item.path} 
+                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                {/* categories */}
+                <div className="lg:col-span-3 lg:ml-auto">
+                    <h4 className="text-[#262626] font-bold text-base uppercase tracking-widest mb-6">Top Categories</h4>
+                    <ul className="flex flex-col gap-4">
+                        {footerCategories.map((item, index) => (
+                            <li key={index}>
+                                <Link 
+                                    to={`/category/${item.toLowerCase().replace(' ', '-')}`} 
+                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium capitalize"
+                                >
+                                    {item}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
+                {/* account & support */}
+                <div className="lg:col-span-3 lg:ml-auto">
+                    <h4 className="text-[#262626] font-bold text-base uppercase tracking-widest mb-6">Account & Help</h4>
+                    <ul className="flex flex-col gap-4">
+                        {[
+                            { name: 'Login', path: '/login' },
+                            { name: 'Create Account', path: '/signup' },
+                            { name: 'Shopping Cart', path: '/cart' },
+                            { name: 'Track Order', path: '/track' }
+                        ].map((item, index) => (
+                            <li key={index}>
+                                <Link 
+                                    to={item.path} 
+                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
+                                >
+                                    {item.name}
+                                </Link>
+                            </li>
+                        ))}
+                    </ul>
+                </div>
             </div>
-            <div className="shop w-1/2 sm:w-[30%] lg:w-auto">
-              <p className="text-[#262626] text-base font-bold pb-4 lg:pb-[25px] uppercase">Shop</p>
-              <ul className="leading-[23px]">
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Category 1</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Category 2</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Category 3</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Category 4</li>
-                <li className="text-[14px] text-[#6D6D6D]">Category 5</li>
-              </ul>
+            {/* bottom footer */}
+            <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
+                {/* Social Icons */}
+                <div className="flex gap-5">
+                    <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                        <FaFacebookF className="text-lg" />
+                    </a>
+                    <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                        <FaInstagram className="text-lg" />
+                    </a>
+                    <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                        <FaLinkedinIn className="text-lg" />
+                    </a>
+                    <a href="https://github.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                        <FaGithub className="text-lg" />
+                    </a>
+                </div>
+                {/* developer credit */}
+                <p className="text-xs sm:text-sm text-[#767676] text-center md:text-right font-medium tracking-wide">
+                    © {currentYear} Orebi E-Commerce. <br className="md:hidden" />
+                    Developed by <span className="text-[#262626] font-bold">Majharul Islam Sijan</span>.
+                </p>
             </div>
-            <div className="help w-1/2 sm:w-[30%] lg:w-auto">
-              <p className="text-[#262626] text-base font-bold pb-4 lg:pb-[25px] uppercase">Help</p>
-              <ul className="leading-[23px]">
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Privacy Policy</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Terms & Conditions</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Special E-shop</li>
-                <li className="text-[14px] text-[#6D6D6D] mb-2 lg:mb-0">Shipping</li>
-                <li className="text-[14px] text-[#6D6D6D]">Secure Payments</li>
-              </ul>
-            </div>
-            <div className="contact w-full sm:w-[50%] lg:w-auto mt-4 sm:mt-6 lg:mt-0">
-              <p className="text-[#262626] text-base font-bold pb-4 lg:pb-[25px] uppercase w-full max-w-[190px] leading-[27px]">(052) 611-5711 company@domain.com</p>
-              <p className="text-[14px] text-[#6D6D6D]">575 Crescent Ave. Quakertown, PA 18951</p>
-            </div>
-            <div className="footerLogo w-full sm:w-[40%] lg:w-auto mt-6 lg:mt-0 flex sm:justify-end lg:justify-start items-start">
-              <Link to={'/'}>
-              <Images imgSrc={Logo}/>
-              </Link>
-            </div>
-          </div>
-          {/* Bottom part of footer */}
-          <Flex className={'lg:justify-between lg:flex-row flex-col gap-5 items-center justify-center'}>
-            <div className="footerIcons">
-              <ul className="flex justify-between gap-x-6 items-center">
-                <li>
-                <Link to={'/'} className="text-[#262626] hover:text-black duration-300">
-                  <FaFacebookF/>
-                </Link>
-                </li>
-                <li>
-                <Link to={'/'} className="text-[#262626] hover:text-black duration-300">
-                  <FaLinkedinIn/>
-                </Link>
-                </li>
-                <li>
-                <Link to={'/'} className="text-[#262626] hover:text-black duration-300">
-                  <FaInstagram/>
-                </Link>
-                </li>
-              </ul>
-            </div>
-            <p className="text-[14px] text-[#6D6D6D] text-center lg:text-left">
-              2020 Orebi Minimal eCommerce Figma Template by Adveits
-            </p>
-          </Flex>
         </Container>
-      </div>
-    </>
-  )
+    </footer>
+  );
 }
 
-export default Footer
+export default Footer;
