@@ -1,7 +1,5 @@
 import { Link } from "react-router-dom";
 import Images from "../Images";
-
-// Image imports
 import intro from '../../assets/Intro.png';
 import bg2 from '../../assets/bg2.png';
 import bg3 from '../../assets/bg3.png';
@@ -30,18 +28,34 @@ const Banner = () => {
                 className="w-full h-full"
             >
                 <SwiperSlide>
-                    <Link to={'/productinside'} className="block w-full">
-                        <Images imgSrc={intro} className="w-full h-auto object-cover mx-auto" />
+                    <Link to={'/productinside'} className="block w-full" aria-label="View introductory offer">
+                        <Images 
+                            imgSrc={intro} 
+                            alt="Amazon Prime Home Services Offer" 
+                            className="w-full h-auto object-cover mx-auto" 
+                            fetchPriority="high" 
+                            loading="eager"
+                        />
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Link to={'/shop'} className="block w-full">
-                        <Images imgSrc={bg2} className="w-full h-auto object-cover mx-auto" />
+                    <Link to={'/shop'} className="block w-full" aria-label="Shop new arrivals">
+                        <Images 
+                            imgSrc={bg2} 
+                            alt="Shop Collection Banner 2" 
+                            className="w-full h-auto object-cover mx-auto" 
+                            loading="lazy"
+                        />
                     </Link>
                 </SwiperSlide>
                 <SwiperSlide>
-                    <Link to={'/shop'} className="block w-full">
-                        <Images imgSrc={bg3} className="w-full h-auto object-cover mx-auto" />
+                    <Link to={'/shop'} className="block w-full" aria-label="Explore more products">
+                        <Images 
+                            imgSrc={bg3} 
+                            alt="Shop Collection Banner 3" 
+                            className="w-full h-auto object-cover mx-auto" 
+                            loading="lazy"
+                        />
                     </Link>
                 </SwiperSlide>
             </Swiper>

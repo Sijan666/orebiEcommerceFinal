@@ -1,9 +1,15 @@
+import React from 'react';
 
-
-const Images = ({imgSrc , className}) => {
+const Images = ({ imgSrc, className, alt, ...props }) => {
     return (
-        <img className={`${className}`} src={imgSrc} alt="" loading="lazy"/>
+        <img 
+            src={imgSrc} 
+            className={`${className}`} 
+            alt={alt || ""}
+            loading="lazy"
+            {...props}
+        />
     )
 }
 
-export default Images
+export default Images;
