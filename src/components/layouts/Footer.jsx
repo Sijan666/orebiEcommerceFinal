@@ -6,17 +6,17 @@ import { FaFacebookF, FaLinkedinIn, FaInstagram, FaGithub } from "react-icons/fa
 import { Link } from "react-router-dom";
 
 const Footer = () => {
-  const currentYear = new Date().getFullYear();
+    const currentYear = new Date().getFullYear();
 
-  const footerCategories = [
-      "Smartphones", 
-      "Laptops", 
-      "Furniture", 
-      "Mens Shirts", 
-      "Womens Dresses"
-  ];
+    const footerCategories = [
+        "Smartphones", 
+        "Laptops", 
+        "Furniture", 
+        "Mens Shirts", 
+        "Womens Dresses"
+    ];
 
-  return (
+return (
     <footer className="bg-[#F5F5F3] pt-20 pb-8 mt-20 font-sans border-t border-gray-200">
         <Container className="px-4 lg:px-0">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-gray-200">
@@ -25,17 +25,17 @@ const Footer = () => {
                     <Link to="/" className="inline-block" aria-label="Go to Home">
                         <Images imgSrc={Logo} alt="Orebi Logo" className="w-28 object-contain" />
                     </Link>
-                    <p className="text-sm text-[#767676] leading-relaxed mt-2">
+                    <p className="text-sm text-[#555555] leading-relaxed mt-2">
                         Orebi is a premium e-commerce platform offering the best products with top-tier customer service. Quality you can trust, delivered right to your doorstep.
                     </p>
                     <div className="flex flex-col gap-1 mt-4">
-                        <a href="tel:+8801700000000" className="text-[15px] text-[#262626] font-bold hover:text-[#767676] transition-colors">
+                        <a href="tel:+8801700000000" className="text-[15px] text-[#262626] font-bold hover:text-[#555555] transition-colors">
                             +880 17XX-XXXXXX
                         </a>
-                        <a href="mailto:contact@orebistore.com" className="text-[15px] text-[#262626] font-bold hover:text-[#767676] transition-colors">
+                        <a href="mailto:contact@orebistore.com" className="text-[15px] text-[#262626] font-bold hover:text-[#555555] transition-colors">
                             contact@orebistore.com
                         </a>
-                        <p className="text-sm text-[#767676] mt-2">
+                        <p className="text-sm text-[#555555] mt-2">
                             Dhaka, Bangladesh
                         </p>
                     </div>
@@ -53,7 +53,7 @@ const Footer = () => {
                             <li key={index}>
                                 <Link 
                                     to={item.path} 
-                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
+                                    className="text-[#555555] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
                                 >
                                     {item.name}
                                 </Link>
@@ -69,7 +69,7 @@ const Footer = () => {
                             <li key={index}>
                                 <Link 
                                     to={`/category/${item.toLowerCase().replace(' ', '-')}`} 
-                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium capitalize"
+                                    className="text-[#555555] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium capitalize"
                                 >
                                     {item}
                                 </Link>
@@ -90,7 +90,7 @@ const Footer = () => {
                             <li key={index}>
                                 <Link 
                                     to={item.path} 
-                                    className="text-[#767676] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
+                                    className="text-[#555555] text-sm hover:text-[#262626] hover:translate-x-1 inline-block transition-transform duration-300 font-medium"
                                 >
                                     {item.name}
                                 </Link>
@@ -103,28 +103,28 @@ const Footer = () => {
             <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 {/* Social Icons */}
                 <div className="flex gap-5">
-                    <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer" className="text-[#555555] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaFacebookF className="text-lg" />
                     </a>
-                    <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer" className="text-[#555555] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaInstagram className="text-lg" />
                     </a>
-                    <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="text-[#555555] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaLinkedinIn className="text-lg" />
                     </a>
-                    <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer" className="text-[#555555] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaGithub className="text-lg" />
                     </a>
                 </div>
                 {/* developer credit */}
-                <p className="text-xs sm:text-sm text-[#767676] text-center md:text-right font-medium tracking-wide">
+                <p className="text-xs sm:text-sm text-[#555555] text-center md:text-right font-medium tracking-wide">
                     © {currentYear} Orebi E-Commerce. <br className="md:hidden" />
                     Developed by <span className="text-[#262626] font-bold">Majharul Islam Sijan</span>.
                 </p>
             </div>
         </Container>
     </footer>
-  );
+    );
 }
 
 export default Footer;
