@@ -6,7 +6,9 @@ const RootLayouts = () => {
     return (
         <>
             <Header/>
-            <Outlet/>
+            <main>
+                <Outlet/>
+            </main>
             <Footer/>
         </>
     )
