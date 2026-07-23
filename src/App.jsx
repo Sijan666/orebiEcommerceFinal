@@ -3,10 +3,6 @@ import './App.css';
 import { Routes, Route } from 'react-router-dom';
 import ReactLenis from 'lenis/react';
 import Loader from './components/Loader';
-import CartPage from './components/pages/Cart';
-import Success from './components/pages/Success';
-import Checkout from './components/pages/Checkout';
-import TrackOrder from './components/pages/TrackOrder';
 
 const RootLayouts = lazy(() => import('./components/layouts/RootLayouts'));
 const Home = lazy(() => import('./components/pages/Home'));
@@ -20,6 +16,10 @@ const IndividualProduct = lazy(() => import('./components/pages/IndividualProduc
 const Error = lazy(() => import('./components/pages/Error'));
 const CategoryPage = lazy(() => import('./components/pages/CategoryPage'));
 const Receipt = lazy(() => import('./components/pages/Receipt'));
+const CartPage = lazy(() => import('./components/pages/Cart'));
+const Checkout = lazy(() => import('./components/pages/Checkout'));
+const Success = lazy(() => import('./components/pages/Success'));
+const TrackOrder = lazy(() => import('./components/pages/TrackOrder'));
 
 function App() {
   return (
