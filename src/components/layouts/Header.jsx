@@ -141,8 +141,9 @@ const Header = () => {
                 {/* top */}
                 <div className="flex items-center justify-between py-3 md:py-4 lg:py-5 gap-x-4 lg:gap-x-8 px-4 lg:px-0">
                     <div className="shrink-0 z-50">
-                        <Link to="/" className="block transition-transform duration-300">
-                            <Images imgSrc={Logo} className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
+                        <Link to="/" className="block transition-transform duration-300" aria-label="Go to Home">
+                            {/* alt text added here */}
+                            <Images imgSrc={Logo} alt="Orebi Logo" className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
                         </Link>
                     </div>
                     {/* search bar */}
@@ -154,11 +155,13 @@ const Header = () => {
                                 onChange={handleSearchChange}
                                 onFocus={() => searchQuery.trim() && setShowSearchDropdown(true)}
                                 placeholder="Search for products, brands and more..." 
+                                aria-label="Search for products"
                                 className="w-full bg-gray-50/80 backdrop-blur-sm border border-gray-200 text-gray-700 text-[14px] px-6 py-3 rounded-full outline-none transition-all duration-300 focus:bg-white focus:border-black/20 focus:shadow-[0_0_15px_rgba(0,0,0,0.05)] placeholder:text-gray-400"
                             />
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
                                 {isSearching && <FiLoader className="text-gray-400 text-lg animate-spin" />}
-                                <button type="submit" className="p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors duration-300">
+                                {/* aria-label added here */}
+                                <button type="submit" aria-label="Search" className="p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors duration-300">
                                     <FiSearch className="text-md" />
                                 </button>
                             </div>
@@ -199,7 +202,7 @@ const Header = () => {
                                     </div>
                                 ) : (
                                     <div className="py-10 text-center flex flex-col items-center justify-center">
-                                        <span className="text-4xl mb-2">🔍</span>
+                                        <span className="text-4xl mb-2" role="img" aria-label="Not found">🔍</span>
                                         <p className="text-sm font-medium text-gray-900">No results found</p>
                                         <p className="text-xs text-gray-500 mt-1">Try a different keyword</p>
                                     </div>
@@ -210,7 +213,9 @@ const Header = () => {
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
                         {/* user menu */}
                         <div ref={userRef} className="relative hidden md:block">
+                            {/* aria-label added here */}
                             <button 
+                                aria-label="User Menu"
                                 onClick={() => setShowUserMenu(!showUserMenu)}
                                 className="flex items-center gap-x-1 p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300"
                             >
@@ -225,11 +230,13 @@ const Header = () => {
                             </div>
                         </div>
                         {/* track order */}
-                        <Link to="/track" title="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
+                        {/* aria-label added here */}
+                        <Link to="/track" title="Track Order" aria-label="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiMapPin className="text-lg md:text-xl" />
                         </Link>
                         {/* cart */}
-                        <Link to={'/cart'} className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
+                        {/* aria-label added here */}
+                        <Link to={'/cart'} aria-label="Shopping Cart" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
                             {totalCartQuantity > 0 && (
                                 <span className="absolute top-0 md:top-1 right-0 md:right-1 bg-red-500 text-white text-[9px] md:text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center border-2 border-white">
@@ -238,7 +245,9 @@ const Header = () => {
                             )}
                         </Link>
                         {/* mobile menu */}
+                        {/* aria-label added here */}
                         <button 
+                            aria-label="Toggle Mobile Menu"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-2 text-gray-800 focus:outline-none ml-1 hover:bg-gray-100 rounded-full transition-colors"
                         >
@@ -297,11 +306,13 @@ const Header = () => {
                                 onChange={handleSearchChange}
                                 onFocus={() => searchQuery.trim() && setShowSearchDropdown(true)}
                                 placeholder="Search products..." 
+                                aria-label="Search products"
                                 className="w-full bg-gray-50 border border-gray-200 shadow-sm text-[14px] px-5 py-3.5 rounded-xl outline-none focus:border-black/20 focus:bg-white transition-all" 
                             />
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
                                 {isSearching && <FiLoader className="text-gray-400 text-lg animate-spin" />}
-                                <button type="submit" className="p-1">
+                                {/* aria-label added here */}
+                                <button type="submit" aria-label="Search" className="p-1">
                                     <FiSearch className="text-gray-400 text-lg hover:text-black transition-colors" />
                                 </button>
                             </div>
