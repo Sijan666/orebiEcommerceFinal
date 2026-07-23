@@ -142,7 +142,6 @@ const Header = () => {
                 <div className="flex items-center justify-between py-3 md:py-4 lg:py-5 gap-x-4 lg:gap-x-8 px-4 lg:px-0">
                     <div className="shrink-0 z-50">
                         <Link to="/" className="block transition-transform duration-300" aria-label="Go to Home">
-                            {/* alt text added here */}
                             <Images imgSrc={Logo} alt="Orebi Logo" className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
                         </Link>
                     </div>
@@ -160,7 +159,6 @@ const Header = () => {
                             />
                             <div className="absolute right-3 top-1/2 -translate-y-1/2 flex items-center gap-2">
                                 {isSearching && <FiLoader className="text-gray-400 text-lg animate-spin" />}
-                                {/* aria-label added here */}
                                 <button type="submit" aria-label="Search" className="p-2 bg-black text-white rounded-full hover:bg-gray-800 transition-colors duration-300">
                                     <FiSearch className="text-md" />
                                 </button>
@@ -213,7 +211,6 @@ const Header = () => {
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
                         {/* user menu */}
                         <div ref={userRef} className="relative hidden md:block">
-                            {/* aria-label added here */}
                             <button 
                                 aria-label="User Menu"
                                 onClick={() => setShowUserMenu(!showUserMenu)}
@@ -230,12 +227,10 @@ const Header = () => {
                             </div>
                         </div>
                         {/* track order */}
-                        {/* aria-label added here */}
                         <Link to="/track" title="Track Order" aria-label="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiMapPin className="text-lg md:text-xl" />
                         </Link>
                         {/* cart */}
-                        {/* aria-label added here */}
                         <Link to={'/cart'} aria-label="Shopping Cart" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
                             {totalCartQuantity > 0 && (
@@ -245,7 +240,6 @@ const Header = () => {
                             )}
                         </Link>
                         {/* mobile menu */}
-                        {/* aria-label added here */}
                         <button 
                             aria-label="Toggle Mobile Menu"
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
@@ -311,7 +305,6 @@ const Header = () => {
                             />
                             <div className="absolute right-4 top-1/2 -translate-y-1/2 flex items-center gap-2">
                                 {isSearching && <FiLoader className="text-gray-400 text-lg animate-spin" />}
-                                {/* aria-label added here */}
                                 <button type="submit" aria-label="Search" className="p-1">
                                     <FiSearch className="text-gray-400 text-lg hover:text-black transition-colors" />
                                 </button>
