@@ -37,12 +37,12 @@ const Header = () => {
     const userRef = useRef();
     const searchRef = useRef(); 
     const mobileSearchRef = useRef();
-    // REDUX CART LOGIC
+    // redux
     const cartItems = useSelector((state) => state.cart.cartItems);
     const totalCartQuantity = cartItems.reduce((total, item) => total + item.quantity, 0);
 
 
-    // Fetch Initial Data for search
+    // fetch data for search
     useEffect(() => {
         const fetchProducts = async () => {
             try {
@@ -63,7 +63,7 @@ const Header = () => {
         return () => clearTimeout(timerId);
     }, [searchQuery]);
 
-    // Scroll Effect
+    // scroll
     useEffect(() => {
         const handleScroll = () => setIsScrolled(window.scrollY > 30);
         window.addEventListener("scroll", handleScroll);
@@ -80,7 +80,7 @@ const Header = () => {
         return () => { document.body.style.overflow = 'unset'; };
     }, [isMobileMenuOpen]);
 
-    // Click Outside Logic
+    // click outside
     useEffect(() => {
         const handleClickOutside = (event) => {
             if (categoryRef.current && !categoryRef.current.contains(event.target)) setShowCategory(false);
@@ -110,7 +110,7 @@ const Header = () => {
         "Sunglasses"
     ];
 
-    // Search function
+    // search
     const handleSearchChange = (e) => {
         const value = e.target.value;
         setSearchQuery(value);
@@ -138,14 +138,14 @@ const Header = () => {
             }`}
         >
             <Container>
-                {/* TOP ROW */}
+                {/* top */}
                 <div className="flex items-center justify-between py-3 md:py-4 lg:py-5 gap-x-4 lg:gap-x-8 px-4 lg:px-0">
                     <div className="shrink-0 z-50">
                         <Link to="/" className="block transition-transform duration-300">
                             <Images imgSrc={Logo} className="h-6 md:h-7 lg:h-8 w-auto object-contain" />
                         </Link>
                     </div>
-                    {/* DESKTOP SEARCH BAR */}
+                    {/* search bar */}
                     <div className="hidden md:flex flex-1 max-w-2xl justify-center relative" ref={searchRef}>
                         <form onSubmit={(e) => e.preventDefault()} className="relative w-full group z-50">
                             <input 
@@ -163,7 +163,7 @@ const Header = () => {
                                 </button>
                             </div>
                         </form>
-                        {/* DESKTOP SEARCH DROPDOWN */}
+                        {/* search dropdown */}
                         <div className={`absolute top-[120%] left-0 w-full bg-white border border-gray-100 rounded-2xl shadow-[0_15px_40px_rgba(0,0,0,0.12)] z-50 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
                             <div className="max-h-[350px] w-full overflow-y-auto rounded-2xl p-2" data-lenis-prevent>
                                 {isSearching ? (
@@ -208,7 +208,7 @@ const Header = () => {
                         </div>
                     </div>
                     <div className="flex items-center justify-end gap-x-2 md:gap-x-4 z-50">
-                        {/* USER MENU */}
+                        {/* user menu */}
                         <div ref={userRef} className="relative hidden md:block">
                             <button 
                                 onClick={() => setShowUserMenu(!showUserMenu)}
@@ -224,11 +224,11 @@ const Header = () => {
                                 </ul>
                             </div>
                         </div>
-                        {/* TRACK ORDER ICON */}
+                        {/* track order */}
                         <Link to="/track" title="Track Order" className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiMapPin className="text-lg md:text-xl" />
                         </Link>
-                        {/* CART ICON */}
+                        {/* cart */}
                         <Link to={'/cart'} className="relative p-2 md:p-2.5 rounded-full text-gray-600 hover:text-black hover:bg-gray-100 transition-colors duration-300">
                             <FiShoppingCart className="text-lg md:text-xl" />
                             {totalCartQuantity > 0 && (
@@ -237,7 +237,7 @@ const Header = () => {
                                 </span>
                             )}
                         </Link>
-                        {/* MOBILE MENU TOGGLE BUTTON */}
+                        {/* mobile menu */}
                         <button 
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                             className="md:hidden p-2 text-gray-800 focus:outline-none ml-1 hover:bg-gray-100 rounded-full transition-colors"
@@ -246,7 +246,7 @@ const Header = () => {
                         </button>
                     </div>
                 </div>
-                {/* BOTTOM ROW (Desktop Nav) */}
+                {/* bottom */}
                 <div className={`hidden md:flex items-center justify-between pb-4 px-4 lg:px-0 transition-all duration-300 ${isScrolled ? "hidden" : "block"}`}>
                     <div ref={categoryRef} className="relative z-40">
                         <button 
@@ -285,10 +285,10 @@ const Header = () => {
                     </nav>
                 </div>
             </Container>
-            {/* MOBILE MENU */}
+            {/* mobile menu */}
             <div className={`md:hidden fixed inset-0 bg-white/95 backdrop-blur-3xl transition-all duration-300 ease-in-out z-40 ${isMobileMenuOpen ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-full pointer-events-none"}`}>
                 <div className="w-full h-dvh px-5 pt-[85px] pb-10 overflow-y-auto" data-lenis-prevent>
-                    {/* MOBILE SEARCH BAR */}
+                    {/* mobile search bar */}
                     <div className="relative w-full mb-8 z-50" ref={mobileSearchRef}>
                         <form onSubmit={(e) => e.preventDefault()}>
                             <input 
@@ -306,7 +306,7 @@ const Header = () => {
                                 </button>
                             </div>
                         </form>
-                        {/* MOBILE SEARCH DROPDOWN */}
+                        {/* mobile search dropdown */}
                         <div className={`absolute top-[110%] left-0 w-full bg-white border border-gray-100 rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.08)] z-60 transition-all duration-300 ease-out origin-top ${showSearchDropdown ? 'opacity-100 scale-y-100 pointer-events-auto' : 'opacity-0 scale-y-95 pointer-events-none'}`}>
                             <div className="max-h-[300px] w-full overflow-y-auto rounded-xl p-2" data-lenis-prevent>
                                 {isSearching ? (
