@@ -22,8 +22,9 @@ const Footer = () => {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-12 gap-10 lg:gap-8 pb-16 border-b border-gray-200">
                 {/* brand & contact */}
                 <div className="lg:col-span-4 flex flex-col gap-6 lg:pr-10">
-                    <Link to="/" className="inline-block">
-                        <Images imgSrc={Logo} className="w-28 object-contain" />
+                    <Link to="/" className="inline-block" aria-label="Go to Home">
+                        {/* alt text added here */}
+                        <Images imgSrc={Logo} alt="Orebi Logo" className="w-28 object-contain" />
                     </Link>
                     <p className="text-sm text-[#767676] leading-relaxed mt-2">
                         Orebi is a premium e-commerce platform offering the best products with top-tier customer service. Quality you can trust, delivered right to your doorstep.
@@ -103,16 +104,17 @@ const Footer = () => {
             <div className="pt-8 flex flex-col md:flex-row justify-between items-center gap-6">
                 {/* Social Icons */}
                 <div className="flex gap-5">
-                    <a href="https://facebook.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    {/* aria-labels added here */}
+                    <a href="https://facebook.com" aria-label="Facebook" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaFacebookF className="text-lg" />
                     </a>
-                    <a href="https://instagram.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://instagram.com" aria-label="Instagram" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaInstagram className="text-lg" />
                     </a>
-                    <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://linkedin.com" aria-label="LinkedIn" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaLinkedinIn className="text-lg" />
                     </a>
-                    <a href="https://github.com" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
+                    <a href="https://github.com" aria-label="GitHub" target="_blank" rel="noreferrer" className="text-[#767676] hover:text-[#262626] hover:-translate-y-1 transition-all duration-300">
                         <FaGithub className="text-lg" />
                     </a>
                 </div>
